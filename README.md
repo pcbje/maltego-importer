@@ -1,9 +1,6 @@
-Maltego CaseFile data importer
-==============
+#### Maltego CaseFile data importer
 
-##### Currently supported CSV-formats
-
-####### Entity types defined in header:
+###### Entity types defined in header:
 <pre>
 [Entity group].[Entity type],[Entity group].[Entity type],[Edge group].[Edge type]
 [Node ID 1],[Node ID 2],[Edge label 1]
@@ -11,7 +8,7 @@ Maltego CaseFile data importer
 [Node ID 2],[Node ID 3],[Edge label 3]
 </pre>
 
-####### Entity types defined together with value:
+###### Entity types defined together with value:
 <pre>
 [Node group].[Node type],[Node ID 1],[Node group].[Node type],[Node ID 2],[Edge group].[Edge type],[Edge label 1]
 [Node group].[Node type],[Node ID 1],[Node group].[Node type],[Node ID 3],[Edge group].[Edge type],[Edge label 2]
