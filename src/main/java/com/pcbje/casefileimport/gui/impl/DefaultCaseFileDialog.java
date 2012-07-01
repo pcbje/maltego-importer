@@ -16,10 +16,12 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 /**
  *
@@ -40,12 +42,13 @@ public class DefaultCaseFileDialog implements CaseFileDialog {
         JPanel panel = (JPanel) frame.getContentPane();
         
         panel.setLayout(new BorderLayout());
-        
-        frame.setSize(new Dimension(300, 100));
+        panel.setBorder(new EmptyBorder(10, 10, 10, 10) );
 
         JPanel top = new JPanel(new BorderLayout());
         
         panel.add(top, BorderLayout.NORTH);
+        
+        top.add(new JLabel("File: "), BorderLayout.WEST);
         
         filePathField = new JTextField("");
 
@@ -70,10 +73,6 @@ public class DefaultCaseFileDialog implements CaseFileDialog {
             }
         });
 
-        delimeterField = new JTextField(",");
-
-        panel.add(delimeterField);
-
         JPanel parserPanel = new JPanel();
 
         JRadioButton headerButton = new JRadioButton("Defined in header");
@@ -97,12 +96,19 @@ public class DefaultCaseFileDialog implements CaseFileDialog {
         
         panel.add(bottom, BorderLayout.SOUTH);
         
+        bottom.add(new JLabel("Delimeter: "), BorderLayout.WEST);
+        
+        delimeterField = new JTextField(",");
+
+        bottom.add(delimeterField, BorderLayout.CENTER);
+        
         submitButton = new JButton("Load");
         
-        bottom.add(submitButton, BorderLayout.WEST);
+        bottom.add(submitButton, BorderLayout.EAST);
     }
 
     public void showDialog() {        
+        frame.setSize(new Dimension(340, 120));
         frame.setTitle("Copy to Maltego CaseFile");
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
