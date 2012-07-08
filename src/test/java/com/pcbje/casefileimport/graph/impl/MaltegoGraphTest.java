@@ -1,38 +1,44 @@
 package com.pcbje.casefileimport.graph.impl;
 
-import com.pcbje.casefileimport.graph.CaseFileEdge;
-import com.pcbje.casefileimport.graph.CaseFileGraph;
-import com.pcbje.casefileimport.graph.CaseFileNode;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.junit.Test;
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+
+import com.pcbje.graphimport.graph.impl.MaltegoEdge;
+import com.pcbje.graphimport.graph.impl.MaltegoGraph;
+import com.pcbje.graphimport.graph.impl.MaltegoNode;
 
 /**
  *
  * @author pcbje
  */
-public class DefaultCaseFileGraphTest {
+public class MaltegoGraphTest {
     @Test
     public void testAddNodeIsMerged() {
-        CaseFileGraph graph = new DefaultCaseFileGraph();
-        CaseFileNode first = new DefaultCaseFileNode("id","Group",  "maltego.type", "oldlabel");
+        MaltegoGraph graph = new MaltegoGraph();
+        MaltegoNode first = new MaltegoNode("id", "type");
         
-        CaseFileNode second = new DefaultCaseFileNode("id","Group",  "maltego.type", "newlabel");
+        MaltegoNode second = new MaltegoNode("id", "type");
         
         graph.addNode("id", first);
         graph.addNode("id", second);
         
         assertEquals(1, graph.getNodes().size());
-        assertEquals("newlabel", graph.getNode("id").getLabel());
     }
     
     @Test
     public void testAddEdgeIsMerges() {
-        CaseFileGraph graph = new DefaultCaseFileGraph();
+        MaltegoGraph graph = new MaltegoGraph();
         
-        CaseFileEdge first = new DefaultCaseFileEdge("id", "oldlabel");
-        CaseFileEdge second = new DefaultCaseFileEdge("id", "newlabel");
+        MaltegoEdge first = new MaltegoEdge("id", "oldlabel");
+        MaltegoEdge second = new MaltegoEdge("id", "newlabel");
         
         graph.addEdge(first.getId(), first);
         graph.addEdge(second.getId(), second);
@@ -42,22 +48,26 @@ public class DefaultCaseFileGraphTest {
     }
     
     @Test
-    public void testGetGraphMLSimple() {
-        CaseFileGraph graph = new DefaultCaseFileGraph();
+    public void testGetGraphMLSimple() throws ParserConfigurationException {
+        MaltegoGraph graph = new MaltegoGraph();
         
-        CaseFileNode first = new DefaultCaseFileNode("node 1","Group",  "maltego.type1", "label 1");
-        CaseFileNode second = new DefaultCaseFileNode("node 2","Group",  "maltego.type2", "label 2");
+        MaltegoNode first = new MaltegoNode("node 1", "type1");
+        MaltegoNode second = new MaltegoNode("node 2", "type2");
                 
         graph.addNode(first.getId(), first);
         graph.addNode(second.getId(), second);
         
-        CaseFileEdge edge = new DefaultCaseFileEdge("edge 1", "edge label 1");
+        MaltegoEdge edge = new MaltegoEdge("edge 1", "edge label 1");
         edge.setSourceNode(first);
         edge.setTargetNode(second);
         
         graph.addEdge(edge.getId(), edge);
         
-        Element graphML = graph.getGraphML();
+        DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+        Document doc = docBuilder.newDocument();
+        
+        Element graphML = graph.getXML(doc);
         assertNotNull(graphML);
         assertEquals("http://graphml.graphdrawing.org/xmlns", graphML.getAttribute("xmlns"));
         assertEquals("http://www.w3.org/2001/XMLSchema-instance", graphML.getAttribute("xmlns:xsi"));

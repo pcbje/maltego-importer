@@ -1,26 +1,27 @@
-package com.pcbje.casefileimport.graph.impl;
+package com.pcbje.graphimport.graph.impl;
 
-import com.pcbje.casefileimport.CaseFileException;
-import com.pcbje.casefileimport.graph.CaseFileEdge;
-import com.pcbje.casefileimport.graph.CaseFileNode;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+
+import com.pcbje.graphimport.graph.EdgeEntity;
+import com.pcbje.graphimport.graph.NodeEntity;
 
 /**
  *
  * @author pcbje
  */
-public class DefaultCaseFileEdge implements CaseFileEdge {
+public class MaltegoEdge implements EdgeEntity {
 
     private final String id;
     private String label;
     private Map<String, String> attributes;
-    private CaseFileNode sourceNode;
-    private CaseFileNode targetNode;
+    private NodeEntity sourceNode;
+    private NodeEntity targetNode;
 
-    public DefaultCaseFileEdge(String id, String label) {
+    public MaltegoEdge(String id, String label) {
         this.id = id;
         this.label = label;
 
@@ -35,19 +36,19 @@ public class DefaultCaseFileEdge implements CaseFileEdge {
         return label;
     }
 
-    public void setSourceNode(CaseFileNode sourceNode) {
+    public void setSourceNode(NodeEntity sourceNode) {
         this.sourceNode = sourceNode;
     }
 
-    public CaseFileNode getSourceNode() {
+    public NodeEntity getSourceNode() {
         return sourceNode;
     }
 
-    public void setTargetNode(CaseFileNode targetNode) {
+    public void setTargetNode(NodeEntity targetNode) {
         this.targetNode = targetNode;
     }
 
-    public CaseFileNode getTargetNode() {
+    public NodeEntity getTargetNode() {
         return targetNode;
     }
 
@@ -63,9 +64,9 @@ public class DefaultCaseFileEdge implements CaseFileEdge {
         return attributes.get(key);
     }
 
-    public void mergeWith(CaseFileEdge otherEdge) {
+    public void mergeWith(MaltegoEdge otherEdge) {
         if (!id.equals(otherEdge.getId())) {
-            throw new CaseFileException("Trying to change edge ID from "
+            throw new RuntimeException("Trying to change edge ID from "
                     + id + " to " + otherEdge.getId() + " for edge " + id);
         }
 
@@ -76,7 +77,7 @@ public class DefaultCaseFileEdge implements CaseFileEdge {
         }
     }
 
-    public Element getGraphML(Document doc) {
+    public Element getXML(Document doc) {
         Element edge = doc.createElement("edge");
         edge.setAttribute("id", id);
         edge.setAttribute("source", sourceNode.getId());

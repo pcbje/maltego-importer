@@ -1,33 +1,35 @@
 package com.pcbje.casefileimport.graph.impl;
 
-import com.pcbje.casefileimport.CaseFileException;
-import com.pcbje.casefileimport.graph.CaseFileEdge;
-import com.pcbje.casefileimport.graph.CaseFileNode;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNotNull;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
+
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+
+import com.pcbje.graphimport.graph.impl.MaltegoEdge;
+import com.pcbje.graphimport.graph.impl.MaltegoNode;
 
 
 /**
  *
  * @author pcbje
  */
-public class DefaultCaseFileEdgeTest {
+public class MaltegoEdgeTest {
     
     @Test
     public void testSetEdgeSourceAndDestination() {
-        CaseFileEdge edge = new DefaultCaseFileEdge("edge id", "edge label");
+        MaltegoEdge edge = new MaltegoEdge("edge id", "edge label");
         
-        CaseFileNode source = new DefaultCaseFileNode("src id", "Group", "maltego.srctype", "src label");
-        
-        CaseFileNode target = new DefaultCaseFileNode("target id", "Group", "maltego.desttype", "target label");
+        MaltegoNode source = new MaltegoNode("src id", "srctype");        
+        MaltegoNode target = new MaltegoNode("target id", "desttype");
         
         edge.setSourceNode(source);
         edge.setTargetNode(target);
@@ -38,18 +40,18 @@ public class DefaultCaseFileEdgeTest {
         
     }
     
-    @Test(expected = CaseFileException.class)
+    @Test(expected = RuntimeException.class)
     public void testEdgeIdImmutable() {
-        CaseFileEdge first = new DefaultCaseFileEdge("id", "label");        
-        CaseFileEdge second = new DefaultCaseFileEdge("different id", "label");
+        MaltegoEdge first = new MaltegoEdge("id", "label");        
+        MaltegoEdge second = new MaltegoEdge("different id", "label");
         
         first.mergeWith(second);
     }
     
     @Test
     public void testEdgeLabelMutable() {
-        CaseFileEdge first = new DefaultCaseFileEdge("id", "label");        
-        CaseFileEdge second = new DefaultCaseFileEdge("id", "different label");
+        MaltegoEdge first = new MaltegoEdge("id", "label");        
+        MaltegoEdge second = new MaltegoEdge("id", "different label");
         
         first.mergeWith(second);
         
@@ -58,11 +60,11 @@ public class DefaultCaseFileEdgeTest {
     
     @Test
     public void testEdgeMerge() {
-        CaseFileEdge first = new DefaultCaseFileEdge("id", "label");       
+        MaltegoEdge first = new MaltegoEdge("id", "label");       
         first.addAttribute("key 1", "value 1");
         first.addAttribute("key 2", "value 2");
         
-        CaseFileEdge second = new DefaultCaseFileEdge("id", "different label");
+        MaltegoEdge second = new MaltegoEdge("id", "different label");
         second.addAttribute("key 1", "value 3");
         second.addAttribute("key 3", "value 4");
         
@@ -80,16 +82,16 @@ public class DefaultCaseFileEdgeTest {
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
             Document doc = docBuilder.newDocument();
             
-            CaseFileEdge edge = new DefaultCaseFileEdge("edge id", "edge label");
+            MaltegoEdge edge = new MaltegoEdge("edge id", "edge label");
             
-            CaseFileNode source = new DefaultCaseFileNode("src id","Group", "maltego.srctype", "src label");
+			MaltegoNode source = new MaltegoNode("src id","srctype");
             
-            CaseFileNode target = new DefaultCaseFileNode("target id","Group", "maltego.desttype", "target label");
+			MaltegoNode target = new MaltegoNode("target id", "desttype");
             
             edge.setSourceNode(source);
             edge.setTargetNode(target);
             
-            Element graphML = edge.getGraphML(doc);
+            Element graphML = edge.getXML(doc);
             assertNotNull(graphML);
             assertEquals("edge id", graphML.getAttribute("id"));
             assertEquals(source.getId(), graphML.getAttribute("source"));
@@ -140,7 +142,7 @@ public class DefaultCaseFileEdgeTest {
             assertNotNull(linkRenderer);
             assertEquals("http://maltego.paterva.com/xml/mtgx", linkRenderer.getAttribute("xmlns:mtg"));
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(DefaultCaseFileEdgeTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MaltegoEdgeTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
