@@ -61,7 +61,7 @@ public class MaltegoNode implements NodeEntity {
         }
     }
 
-    public Element getXML(Document doc) {
+    public Element getGraphML(Document doc) {
         Element node = doc.createElement("node");
         node.setAttribute("id", id);
 
@@ -77,7 +77,7 @@ public class MaltegoNode implements NodeEntity {
         Element props = doc.createElement("mtg:Properties");
 
         for (PropertyEntity property : properties) {
-        	props.appendChild(property.getXML(doc));
+        	props.appendChild(property.getGraphML(doc));
         }
         
         maltegoEntity.appendChild(props);

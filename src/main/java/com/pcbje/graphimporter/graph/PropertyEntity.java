@@ -1,5 +1,10 @@
 package com.pcbje.graphimporter.graph;
 
-public interface PropertyEntity extends XMLEntity {
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+public interface PropertyEntity {
 	public String getPropertyValue(String key);
+	
+	public Element getGraphML(Document doc);
 }

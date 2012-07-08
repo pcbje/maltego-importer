@@ -2,9 +2,14 @@ package com.pcbje.graphimporter.graph;
 
 import java.util.List;
 
-public interface NodeEntity extends XMLEntity {
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+public interface NodeEntity {
 	public String getId();
 	
 	public void addProperty(PropertyEntity attribute);
 	public List<PropertyEntity> getProperties();
+	
+	public Element getGraphML(Document doc);
 }

@@ -71,7 +71,7 @@ public class MaltegoNodeTest {
 
 		node.addProperty(new MaltegoProperty("a", "b", "c", "node label"));
 
-		Element graphML = node.getXML(doc);
+		Element graphML = node.getGraphML(doc);
 		assertNotNull(graphML);
 		assertEquals("node id", graphML.getAttribute("id"));
 		Element data = (Element) graphML.getElementsByTagName("data").item(0);

@@ -57,7 +57,7 @@ public class MaltegoGraph implements GraphEntity {
 		return edges.get(id);
 	}
 
-	public Element getXML(Document doc) {
+	public Element getGraphML(Document doc) {
 		Element graphML = doc.createElement("graphml");
 		graphML.setAttribute("xmlns", "http://graphml.graphdrawing.org/xmlns");
 		graphML.setAttribute("xmlns:xsi",
@@ -87,11 +87,11 @@ public class MaltegoGraph implements GraphEntity {
 		graphElement.setAttribute("id", "G");
 
 		for (NodeEntity node : nodes.values()) {
-			graphElement.appendChild(node.getXML(doc));
+			graphElement.appendChild(node.getGraphML(doc));
 		}
 
 		for (EdgeEntity edge : edges.values()) {
-			graphElement.appendChild(edge.getXML(doc));
+			graphElement.appendChild(edge.getGraphML(doc));
 		}
 
 		graphML.appendChild(graphElement);

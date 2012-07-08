@@ -27,7 +27,7 @@ public class MaltegoProperty implements PropertyEntity {
 		return propertyValues.get(key);
 	}
 	
-	public Element getXML(Document doc) {
+	public Element getGraphML(Document doc) {
 		Element element = doc.createElement("mtg:Property");
         element.setAttribute("displayName", propertyValues.get("displayName"));
         element.setAttribute("hidden", propertyValues.get("hidden"));

@@ -1,5 +1,8 @@
 package com.pcbje.graphimporter.graph;
 
-public interface GraphEntity extends XMLEntity {
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
+public interface GraphEntity {
+	public Element getGraphML(Document doc);
 }

@@ -34,7 +34,7 @@ public class MaltegoPropertyTest {
         DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
         Document doc = docBuilder.newDocument();
 		
-		Element e = prop.getXML(doc);
+		Element e = prop.getGraphML(doc);
 		
 		assertEquals("namevalue", e.getAttribute("name"));
 		assertEquals("displaynamevalue", e.getAttribute("displayName"));

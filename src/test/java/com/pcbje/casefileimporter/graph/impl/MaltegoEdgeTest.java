@@ -91,7 +91,7 @@ public class MaltegoEdgeTest {
             edge.setSourceNode(source);
             edge.setTargetNode(target);
             
-            Element graphML = edge.getXML(doc);
+            Element graphML = edge.getGraphML(doc);
             assertNotNull(graphML);
             assertEquals("edge id", graphML.getAttribute("id"));
             assertEquals(source.getId(), graphML.getAttribute("source"));

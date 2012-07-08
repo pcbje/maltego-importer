@@ -67,7 +67,7 @@ public class MaltegoGraphTest {
         DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
         Document doc = docBuilder.newDocument();
         
-        Element graphML = graph.getXML(doc);
+        Element graphML = graph.getGraphML(doc);
         assertNotNull(graphML);
         assertEquals("http://graphml.graphdrawing.org/xmlns", graphML.getAttribute("xmlns"));
         assertEquals("http://www.w3.org/2001/XMLSchema-instance", graphML.getAttribute("xmlns:xsi"));

@@ -77,7 +77,7 @@ public class MaltegoEdge implements EdgeEntity {
         }
     }
 
-    public Element getXML(Document doc) {
+    public Element getGraphML(Document doc) {
         Element edge = doc.createElement("edge");
         edge.setAttribute("id", id);
         edge.setAttribute("source", sourceNode.getId());

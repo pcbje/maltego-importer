@@ -1,9 +1,14 @@
 package com.pcbje.graphimporter.graph;
 
-public interface EdgeEntity extends XMLEntity {
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+public interface EdgeEntity {
 	public void setSourceNode(NodeEntity source);
 	public NodeEntity getSourceNode();
 	
 	public void setTargetNode(NodeEntity target);
 	public NodeEntity getTargetNode();
+	
+	public Element getGraphML(Document doc);
 }
