@@ -1,4 +1,4 @@
-package com.pcbje.casefileimport.graph.impl;
+package com.pcbje.casefileimporter.graph.impl;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
@@ -14,8 +14,8 @@ import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.pcbje.graphimport.graph.impl.MaltegoEdge;
-import com.pcbje.graphimport.graph.impl.MaltegoNode;
+import com.pcbje.graphimporter.graph.impl.MaltegoEdge;
+import com.pcbje.graphimporter.graph.impl.MaltegoNode;
 
 
 /**

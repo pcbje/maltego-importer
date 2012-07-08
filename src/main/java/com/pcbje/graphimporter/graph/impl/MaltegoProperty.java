@@ -1,4 +1,4 @@
-package com.pcbje.graphimport.graph.impl;
+package com.pcbje.graphimporter.graph.impl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.pcbje.graphimport.graph.PropertyEntity;
+import com.pcbje.graphimporter.graph.PropertyEntity;
 
 public class MaltegoProperty implements PropertyEntity {
 	private final Map<String, String> propertyValues;

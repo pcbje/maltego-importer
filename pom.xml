@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.pcbje</groupId>
-    <artifactId>casefileimport</artifactId>
+    <artifactId>graphimporter</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>casefileimport</name>
+    <name>graphimporter</name>
     <url>http://maven.apache.org</url>
 
     <properties>

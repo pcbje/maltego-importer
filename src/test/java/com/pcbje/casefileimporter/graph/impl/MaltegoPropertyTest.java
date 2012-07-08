@@ -1,4 +1,4 @@
-package com.pcbje.casefileimport.graph.impl;
+package com.pcbje.casefileimporter.graph.impl;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.pcbje.graphimport.graph.impl.MaltegoProperty;
+import com.pcbje.graphimporter.graph.impl.MaltegoProperty;
 
 public class MaltegoPropertyTest {
 	@Test

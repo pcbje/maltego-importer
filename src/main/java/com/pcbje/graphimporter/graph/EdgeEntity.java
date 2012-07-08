@@ -1,4 +1,4 @@
-package com.pcbje.graphimport.graph;
+package com.pcbje.graphimporter.graph;
 
 public interface EdgeEntity extends XMLEntity {
 	public void setSourceNode(NodeEntity source);

@@ -1,4 +1,4 @@
-package com.pcbje.graphimport.graph.impl;
+package com.pcbje.graphimporter.graph.impl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,9 +7,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import com.pcbje.graphimport.graph.EdgeEntity;
-import com.pcbje.graphimport.graph.GraphEntity;
-import com.pcbje.graphimport.graph.NodeEntity;
+import com.pcbje.graphimporter.graph.EdgeEntity;
+import com.pcbje.graphimporter.graph.GraphEntity;
+import com.pcbje.graphimporter.graph.NodeEntity;
 
 /**
  * 

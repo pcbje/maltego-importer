@@ -1,4 +1,4 @@
-package com.pcbje.graphimport.graph;
+package com.pcbje.graphimporter.graph;
 
 import java.util.List;
 

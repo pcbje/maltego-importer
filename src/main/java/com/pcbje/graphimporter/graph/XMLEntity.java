@@ -1,4 +1,4 @@
-package com.pcbje.graphimport.graph;
+package com.pcbje.graphimporter.graph;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

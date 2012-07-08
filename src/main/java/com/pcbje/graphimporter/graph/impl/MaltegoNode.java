@@ -1,4 +1,4 @@
-package com.pcbje.graphimport.graph.impl;
+package com.pcbje.graphimporter.graph.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.pcbje.graphimport.graph.NodeEntity;
-import com.pcbje.graphimport.graph.PropertyEntity;
+import com.pcbje.graphimporter.graph.NodeEntity;
+import com.pcbje.graphimporter.graph.PropertyEntity;
 
 /**
  *
