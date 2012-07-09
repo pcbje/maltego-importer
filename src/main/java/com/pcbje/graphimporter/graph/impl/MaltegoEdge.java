@@ -14,14 +14,17 @@ import com.pcbje.graphimporter.graph.PropertyEntity;
  *
  * @author pcbje
  */
-public class MaltegoEdge implements EdgeEntity {
+public class MaltegoEdge implements EdgeEntity {	
     private final String id;
-    private List<PropertyEntity> properties;
+    private final String type;
+    private final List<PropertyEntity> properties;
     private NodeEntity sourceNode;
     private NodeEntity targetNode;
 
-    public MaltegoEdge(String id, String label) {
+    public MaltegoEdge(String id, String label) {    	
         this.id = id;
+        
+        type = "maltego.link.manual-link";
 
         properties = new ArrayList<PropertyEntity>();
         
@@ -92,7 +95,7 @@ public class MaltegoEdge implements EdgeEntity {
 
         Element maltegoLink = doc.createElement("mtg:MaltegoLink");
         maltegoLink.setAttribute("xmlns:mtg", "http://maltego.paterva.com/xml/mtgx");
-        maltegoLink.setAttribute("type", "maltego.link.manual-link");
+        maltegoLink.setAttribute("type", type);
         data.appendChild(maltegoLink);
 
         Element propertiesElement = doc.createElement("mtg:Properties");

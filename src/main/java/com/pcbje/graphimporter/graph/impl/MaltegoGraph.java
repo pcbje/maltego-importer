@@ -120,9 +120,11 @@ public class MaltegoGraph implements GraphEntity {
 
 		key.setAttribute("for", f);
 		key.setAttribute("id", id);
+		
 		if (yFilesType != null) {
 			key.setAttribute("yfiles.type", yFilesType);
 		}
+		
 		return key;
 	}
 }

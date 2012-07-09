@@ -18,7 +18,6 @@ import org.w3c.dom.Element;
 import com.pcbje.graphimporter.graph.PropertyEntity;
 import com.pcbje.graphimporter.graph.impl.MaltegoEdge;
 import com.pcbje.graphimporter.graph.impl.MaltegoNode;
-import com.pcbje.graphimporter.graph.impl.MaltegoProperty;
 
 
 /**
