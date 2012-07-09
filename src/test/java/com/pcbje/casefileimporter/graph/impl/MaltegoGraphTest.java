@@ -44,7 +44,6 @@ public class MaltegoGraphTest {
         graph.addEdge(second.getId(), second);
         
         assertEquals(1, graph.getEdges().size());
-        assertEquals("newlabel", graph.getEdge("id").getLabel());
     }
     
     @Test

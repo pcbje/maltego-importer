@@ -3,6 +3,7 @@ package com.pcbje.casefileimporter.graph.impl;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,8 +15,10 @@ import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import com.pcbje.graphimporter.graph.PropertyEntity;
 import com.pcbje.graphimporter.graph.impl.MaltegoEdge;
 import com.pcbje.graphimporter.graph.impl.MaltegoNode;
+import com.pcbje.graphimporter.graph.impl.MaltegoProperty;
 
 
 /**
@@ -48,31 +51,19 @@ public class MaltegoEdgeTest {
         first.mergeWith(second);
     }
     
-    @Test
-    public void testEdgeLabelMutable() {
-        MaltegoEdge first = new MaltegoEdge("id", "label");        
-        MaltegoEdge second = new MaltegoEdge("id", "different label");
-        
-        first.mergeWith(second);
-        
-        assertEquals("different label", first.getLabel());
-    }  
     
     @Test
     public void testEdgeMerge() {
-        MaltegoEdge first = new MaltegoEdge("id", "label");       
-        first.addAttribute("key 1", "value 1");
-        first.addAttribute("key 2", "value 2");
-        
+        MaltegoEdge first = new MaltegoEdge("id", "label");               
         MaltegoEdge second = new MaltegoEdge("id", "different label");
-        second.addAttribute("key 1", "value 3");
-        second.addAttribute("key 3", "value 4");
         
         first.mergeWith(second);
         
-        assertEquals("value 3", first.getAttribute("key 1"));
-        assertEquals("value 2", first.getAttribute("key 2"));
-        assertEquals("value 4", first.getAttribute("key 3"));
+        List<PropertyEntity> props = first.getProperties();
+        
+        assertEquals("maltego.link.show-label", props.get(1).getPropertyValue("name"));
+        assertEquals("Thickness", props.get(2).getPropertyValue("displayName"));
+        assertEquals("int", props.get(3).getPropertyValue("type"));
     }  
     
     @Test
@@ -117,14 +108,13 @@ public class MaltegoEdgeTest {
             assertNotNull(showLabelProperty.getAttribute("readonly"));
             assertNotNull(showLabelProperty.getAttribute("type"));
             
-            assertEquals("0", properties.getElementsByTagName("mtg:Property").item(0).getFirstChild().getTextContent());
-            assertEquals("maltego.link.show-label", ((Element) properties.getElementsByTagName("mtg:Property").item(0)).getAttribute("name"));
+            assertEquals("edge label", properties.getElementsByTagName("mtg:Property").item(0).getFirstChild().getTextContent());
+            assertEquals("maltego.link.manual.type", ((Element) properties.getElementsByTagName("mtg:Property").item(0)).getAttribute("name"));
             
-            assertEquals("2", properties.getElementsByTagName("mtg:Property").item(1).getFirstChild().getTextContent());
-            assertEquals("maltego.link.thickness", ((Element) properties.getElementsByTagName("mtg:Property").item(1)).getAttribute("name"));
+            assertEquals("1", properties.getElementsByTagName("mtg:Property").item(1).getFirstChild().getTextContent());
+            assertEquals("maltego.link.show-label", ((Element) properties.getElementsByTagName("mtg:Property").item(1)).getAttribute("name"));
             
-            assertEquals(edge.getLabel(), properties.getElementsByTagName("mtg:Property").item(2).getFirstChild().getTextContent());
-            assertEquals("maltego.link.manual.type", ((Element) properties.getElementsByTagName("mtg:Property").item(2)).getAttribute("name"));
+            assertEquals("maltego.link.thickness", ((Element) properties.getElementsByTagName("mtg:Property").item(2)).getAttribute("name"));
             
             assertEquals("0", properties.getElementsByTagName("mtg:Property").item(3).getFirstChild().getTextContent());
             assertEquals("maltego.link.style", ((Element) properties.getElementsByTagName("mtg:Property").item(3)).getAttribute("name"));

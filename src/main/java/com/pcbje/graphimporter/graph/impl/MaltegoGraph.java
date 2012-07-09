@@ -16,11 +16,22 @@ import com.pcbje.graphimporter.graph.NodeEntity;
  * @author pcbje
  */
 public class MaltegoGraph implements GraphEntity {
+	private final String graphId;
+	private final String createdBy;
+	private final String subtitle;
+	private final String version;
+	private final String edgeDefault;
 
-	private Map<String, MaltegoNode> nodes;
-	private Map<String, MaltegoEdge> edges;
+	private final Map<String, MaltegoNode> nodes;
+	private final Map<String, MaltegoEdge> edges;
 
 	public MaltegoGraph() {
+		graphId = "G";
+		createdBy = "Maltego CaseFile Community";
+		subtitle = "";
+		version = "1.0.1.2483";
+		edgeDefault = "directed";
+
 		nodes = new HashMap<String, MaltegoNode>();
 		edges = new HashMap<String, MaltegoEdge>();
 	}
@@ -68,9 +79,9 @@ public class MaltegoGraph implements GraphEntity {
 				"http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml/1.1/ygraphml.xsd");
 
 		Element versionInfo = doc.createElement("VersionInfo");
-		versionInfo.setAttribute("createdBy", "Maltego CaseFile Community");
-		versionInfo.setAttribute("subtitle", "");
-		versionInfo.setAttribute("version", "1.0.1.2483");
+		versionInfo.setAttribute("createdBy", createdBy);
+		versionInfo.setAttribute("subtitle", subtitle);
+		versionInfo.setAttribute("version", version);
 		graphML.appendChild(versionInfo);
 
 		graphML.appendChild(createKey(doc, null, "graphml", "d0", "resources"));
@@ -83,8 +94,8 @@ public class MaltegoGraph implements GraphEntity {
 		graphML.appendChild(createKey(doc, null, "edge", "d7", "edgegraphics"));
 
 		Element graphElement = doc.createElement("graph");
-		graphElement.setAttribute("edgedefault", "directed");
-		graphElement.setAttribute("id", "G");
+		graphElement.setAttribute("edgedefault", edgeDefault);
+		graphElement.setAttribute("id", graphId);
 
 		for (NodeEntity node : nodes.values()) {
 			graphElement.appendChild(node.getGraphML(doc));
@@ -98,7 +109,6 @@ public class MaltegoGraph implements GraphEntity {
 
 		return graphML;
 	}
-
 
 	private Node createKey(Document doc, String attrName, String f, String id,
 			String yFilesType) {

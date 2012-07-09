@@ -1,39 +1,40 @@
 package com.pcbje.graphimporter.graph.impl;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.pcbje.graphimporter.graph.EdgeEntity;
 import com.pcbje.graphimporter.graph.NodeEntity;
+import com.pcbje.graphimporter.graph.PropertyEntity;
 
 /**
  *
  * @author pcbje
  */
 public class MaltegoEdge implements EdgeEntity {
-
     private final String id;
-    private String label;
-    private Map<String, String> attributes;
+    private List<PropertyEntity> properties;
     private NodeEntity sourceNode;
     private NodeEntity targetNode;
 
     public MaltegoEdge(String id, String label) {
         this.id = id;
-        this.label = label;
 
-        attributes = new HashMap<String, String>();
+        properties = new ArrayList<PropertyEntity>();
+        
+        properties.add(new MaltegoProperty("maltego.link.manual.type", "Label", "string", label));
+        properties.add(new MaltegoProperty("maltego.link.show-label", "Show label", "int", "1"));
+        properties.add(new MaltegoProperty("maltego.link.thickness", "Thickness", "int", "2"));
+        properties.add(new MaltegoProperty("maltego.link.style", "Style", "int", "0"));
+        properties.add(new MaltegoProperty("maltego.link.manual.description", "Description", "string", ""));
+        properties.add(new MaltegoProperty("maltego.link.color", "Color", "color", "8421505"));
     }
 
     public String getId() {
         return id;
-    }
-
-    public String getLabel() {
-        return label;
     }
 
     public void setSourceNode(NodeEntity sourceNode) {
@@ -52,16 +53,12 @@ public class MaltegoEdge implements EdgeEntity {
         return targetNode;
     }
 
-    public void addAttribute(String key, String value) {
-        attributes.put(key, value);
+    public void addProperty(PropertyEntity property) {
+        properties.add(property);
     }
 
-    public Map<String, String> getAttributes() {
-        return attributes;
-    }
-
-    public String getAttribute(String key) {
-        return attributes.get(key);
+    public List<PropertyEntity> getProperties() {
+        return properties;
     }
 
     public void mergeWith(MaltegoEdge otherEdge) {
@@ -70,10 +67,8 @@ public class MaltegoEdge implements EdgeEntity {
                     + id + " to " + otherEdge.getId() + " for edge " + id);
         }
 
-        label = otherEdge.getLabel();
-
-        for (String key : otherEdge.getAttributes().keySet()) {
-            attributes.put(key, otherEdge.getAttribute(key));
+        for (PropertyEntity property : otherEdge.getProperties()) {
+            properties.add(property);
         }
     }
 
@@ -86,46 +81,27 @@ public class MaltegoEdge implements EdgeEntity {
         Element data = doc.createElement("data");
         data.setAttribute("key", "d6");
         edge.appendChild(data);
+        
+        Element data2 = doc.createElement("data");
+        data2.setAttribute("id", "d7");
+        edge.appendChild(data2);
+        
+        Element linkRenderer = doc.createElement("mtg:LinkRenderer");
+        linkRenderer.setAttribute("xmlns:mtg", "http://maltego.paterva.com/xml/mtgx");
+        data2.appendChild(linkRenderer);
 
         Element maltegoLink = doc.createElement("mtg:MaltegoLink");
         maltegoLink.setAttribute("xmlns:mtg", "http://maltego.paterva.com/xml/mtgx");
         maltegoLink.setAttribute("type", "maltego.link.manual-link");
         data.appendChild(maltegoLink);
 
-        Element properties = doc.createElement("mtg:Properties");
-        maltegoLink.appendChild(properties);
-
-        properties.appendChild(createProperty(doc, "0", "Show Label", "false", "maltego.link.show-label", "true", "false", "int"));
-        properties.appendChild(createProperty(doc, "2", "Thickness", "false", "maltego.link.thickness", "true", "false", "int"));
-        properties.appendChild(createProperty(doc, label, "Label", "false", "maltego.link.manual.type", "true", "false", "string"));
-        properties.appendChild(createProperty(doc, "0", "Style", "false", "maltego.link.style", "true", "false", "int"));
-        properties.appendChild(createProperty(doc, "", "Description", "false", "maltego.link.manual.description", "true", "false", "string"));
-        properties.appendChild(createProperty(doc, "8421505", "Color", "false", "maltego.link.color", "true", "false", "color"));
-
-        Element data2 = doc.createElement("data");
-        data2.setAttribute("id", "d7");
-        edge.appendChild(data2);
-
-        Element linkRenderer = doc.createElement("mtg:LinkRenderer");
-        linkRenderer.setAttribute("xmlns:mtg", "http://maltego.paterva.com/xml/mtgx");
-        data2.appendChild(linkRenderer);
+        Element propertiesElement = doc.createElement("mtg:Properties");
+        maltegoLink.appendChild(propertiesElement);
+      
+        for (PropertyEntity property : properties) {
+        	propertiesElement.appendChild(property.getGraphML(doc));
+        }       
 
         return edge;
-    }
-
-    private Element createProperty(Document doc, String value, String displayName, String hidden, String name, String nullable, String readonly, String type) {
-        Element property = doc.createElement("mtg:Property");
-        property.setAttribute("displayName", displayName);
-        property.setAttribute("hidden", hidden);
-        property.setAttribute("name", name);
-        property.setAttribute("nullable", nullable);
-        property.setAttribute("readonly", readonly);
-        property.setAttribute("type", type);
-
-        Element valueElement = doc.createElement("mtg:Value");
-        valueElement.setTextContent(value);
-        property.appendChild(valueElement);
-
-        return property;
     }
 }

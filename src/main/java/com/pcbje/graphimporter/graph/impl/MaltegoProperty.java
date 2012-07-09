@@ -11,20 +11,27 @@ import com.pcbje.graphimporter.graph.PropertyEntity;
 public class MaltegoProperty implements PropertyEntity {
 	private final Map<String, String> propertyValues;
 	
+	private final String value;
+	
 	public MaltegoProperty(String name, String displayName, String type, String value) {
 		propertyValues = new HashMap<String, String>();
 		
 		propertyValues.put("name", name);
 		propertyValues.put("displayName", displayName);
 		propertyValues.put("type", type);
-		propertyValues.put("value", value);
 		propertyValues.put("hidden", "false");
 		propertyValues.put("nullable", "true");
 		propertyValues.put("readonly", "false");
+		
+		this.value = value;
 	}
 	
 	public String getPropertyValue(String key) {
 		return propertyValues.get(key);
+	}
+
+	public String getValue() {
+		return value;
 	}
 	
 	public Element getGraphML(Document doc) {
@@ -36,9 +43,9 @@ public class MaltegoProperty implements PropertyEntity {
         element.setAttribute("readonly", propertyValues.get("readonly"));
         element.setAttribute("type", propertyValues.get("type"));
         
-        Element value = doc.createElement("mtg:Value");
-        value.setTextContent(propertyValues.get("value"));
-        element.appendChild(value);
+        Element valueElement = doc.createElement("mtg:Value");
+        valueElement.setTextContent(value);
+        element.appendChild(valueElement);
         
         return element;
 	}

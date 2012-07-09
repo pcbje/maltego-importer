@@ -10,78 +10,76 @@ import com.pcbje.graphimporter.graph.NodeEntity;
 import com.pcbje.graphimporter.graph.PropertyEntity;
 
 /**
- *
+ * 
  * @author pcbje
  */
 public class MaltegoNode implements NodeEntity {
-    private final String id;
-    private final String type;    
-        
-    private List<PropertyEntity> properties;
+	private final String id;
+	private final String type;
 
-    public MaltegoNode(String id, String type) {
-        this.id = id;
-        this.type = type;
+	private List<PropertyEntity> properties;
 
-        properties = new ArrayList<PropertyEntity>();
-    }
+	public MaltegoNode(String id, String type) {
+		this.id = id;
+		this.type = type;
 
-    public void addProperty(PropertyEntity attribute) {
-        properties.add(attribute);
-    }
+		properties = new ArrayList<PropertyEntity>();
+	}
 
-    public List<PropertyEntity> getProperties() {
-        return properties;
-    }
+	public void addProperty(PropertyEntity attribute) {
+		properties.add(attribute);
+	}
 
-    public String getId() {
-        return id;
-    }
-    
+	public List<PropertyEntity> getProperties() {
+		return properties;
+	}
 
-    public String getType() {
-        return type;
-    }
+	public String getId() {
+		return id;
+	}
 
+	public String getType() {
+		return type;
+	}
 
+	public void mergeWith(MaltegoNode otherNode) {
+		if (!id.equals(otherNode.getId())) {
+			throw new RuntimeException("Trying to change node ID from " + id
+					+ " to " + otherNode.getId() + " for node " + id);
+		}
 
-    public void mergeWith(MaltegoNode otherNode) {
-        if (!id.equals(otherNode.getId())) {
-            throw new RuntimeException("Trying to change node ID from "
-                    + id + " to " + otherNode.getId() + " for node " + id);
-        }
+		if (!type.equals(otherNode.getType())) {
+			throw new RuntimeException("Trying to change node type from "
+					+ type + " to " + otherNode.getType() + " for node " + id);
+		}
 
-        if (!type.equals(otherNode.getType())) {
-            throw new RuntimeException("Trying to change node type from "
-                    + type + " to " + otherNode.getType() + " for node " + id);
-        }        
+		for (PropertyEntity property : otherNode.getProperties()) {
+			properties.add(property);
+		}
+	}
 
-        for (PropertyEntity property : otherNode.getProperties()) {
-            properties.add(property);
-        }
-    }
+	public Element getGraphML(Document doc) {
+		Element node = doc.createElement("node");
+		node.setAttribute("id", id);
 
-    public Element getGraphML(Document doc) {
-        Element node = doc.createElement("node");
-        node.setAttribute("id", id);
+		Element data = doc.createElement("data");
+		data.setAttribute("key", "d4");
+		node.appendChild(data);
 
-        Element data = doc.createElement("data");
-        data.setAttribute("key", "d4");
-        node.appendChild(data);
+		Element maltegoEntity = doc.createElement("mtg:MaltegoEntity");
+		maltegoEntity.setAttribute("xmlns:mtg",
+				"http://maltego.paterva.com/xml/mtgx");
+		maltegoEntity.setAttribute("type", type);
+		data.appendChild(maltegoEntity);
 
-        Element maltegoEntity = doc.createElement("mtg:MaltegoEntity");
-        maltegoEntity.setAttribute("xmlns:mtg", "http://maltego.paterva.com/xml/mtgx");
-        maltegoEntity.setAttribute("type", type);
-        data.appendChild(maltegoEntity);
+		Element props = doc.createElement("mtg:Properties");
 
-        Element props = doc.createElement("mtg:Properties");
+		for (PropertyEntity property : properties) {
+			props.appendChild(property.getGraphML(doc));
+		}
 
-        for (PropertyEntity property : properties) {
-        	props.appendChild(property.getGraphML(doc));
-        }
-        
-        maltegoEntity.appendChild(props);
+		maltegoEntity.appendChild(props);
 
-        return node;
-    }
+		return node;
+	}
 }

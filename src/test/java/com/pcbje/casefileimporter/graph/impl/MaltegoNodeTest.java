@@ -39,7 +39,7 @@ public class MaltegoNodeTest {
 
 		assertEquals("b", props.get(0).getPropertyValue("displayName"));
 		assertEquals("g", props.get(1).getPropertyValue("type"));
-		assertEquals("L", props.get(2).getPropertyValue("value"));
+		assertEquals("L", props.get(2).getValue());
 		assertEquals("a", props.get(0).getPropertyValue("name"));
 	}
 

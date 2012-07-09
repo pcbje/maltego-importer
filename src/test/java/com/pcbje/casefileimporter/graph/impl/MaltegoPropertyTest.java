@@ -20,7 +20,7 @@ public class MaltegoPropertyTest {
 		assertEquals("namevalue", prop.getPropertyValue("name"));
 		assertEquals("displaynamevalue", prop.getPropertyValue("displayName"));
 		assertEquals("typevalue", prop.getPropertyValue("type"));
-		assertEquals("valuevalue", prop.getPropertyValue("value"));
+		assertEquals("valuevalue", prop.getValue());
 		assertEquals("false", prop.getPropertyValue("hidden"));
 		assertEquals("true", prop.getPropertyValue("nullable"));
 		assertEquals("false", prop.getPropertyValue("readonly"));
