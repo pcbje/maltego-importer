@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<maltego>
+	<DesktopComputer>
+		<property displayName="Device" name="device" type="string" label="true" />
+	</DesktopComputer>
+	
+	<Device>
+		<property displayName="Device" name="device" type="string" label="true" />
+	</Device>
+	
+	<MobileComputer>
+		<property displayName="Device" name="device" type="string" label="true" />
+	</MobileComputer>
+	
+	<MobilePhone>
+		<property displayName="Device" name="device" type="string" label="true" />
+	</MobilePhone>
+	
+	<Smartphone>
+		<property displayName="Device" name="device" type="string" label="true" />
+	</Smartphone>
+	
+	<ConversationEmail>
+		<property displayName="Title" name="title" type="string" label="true" />
+		<property displayName="Recipient Emails" name="email.recipients" type="string[]" />
+		<property displayName="Sender Email" name="email" type="string" />
+		<property displayName="People" name="people" type="string[]" />		
+	</ConversationEmail>
+
+	<ConversationPhone>
+		<property displayName="Title" name="title" type="string" label="true" />
+		<property displayName="Caller Number" name="phonenumber.caller" type="string" />
+		<property displayName="Callee Number" name="phonenumber.callee" type="string" />
+		<property displayName="People" name="people" type="string[]" />
+		<property displayName="Duration" name="duration" type="timespan" />
+		<property displayName="Start time" name="starttime" type="datetime" />
+	</ConversationPhone>
+
+	<Incident>
+		<property displayName="Title" name="title" type="string" label="true" />
+		<property displayName="Street Address" name="streetaddress" type="string" />
+		<property displayName="Country Code" name="countrycode" type="string" />
+		<property displayName="Area" name="location.area" type="string" />
+		<property displayName="Name" name="location.name" type="string" />
+		<property displayName="Area Code" name="location.areacode" type="string" />
+		<property displayName="Longitude" name="longitude" type="float" />
+		<property displayName="Latitude" name="latitude" type="float" />
+		<property displayName="City" name="city" type="string" />
+		<property displayName="Country" name="country" type="string" />
+		<property displayName="Start Time" name="starttime" type="datetime" />
+		<property displayName="Stop Time" name="stoptime" type="datetime" />
+	</Incident>
+	
+	<MeetingBusiness>
+		<property displayName="Title" name="title" type="string" label="true" />
+		<property displayName="People" name="people" type="string[]" />
+		<property displayName="Street Address" name="streetaddress" type="string" />
+		<property displayName="Country Code" name="countrycode" type="string" />
+		<property displayName="Area" name="location.area" type="string" />
+		<property displayName="Name" name="location.name" type="string" />
+		<property displayName="Area Code" name="location.areacode" type="string" />
+		<property displayName="Longitude" name="longitude" type="float" />
+		<property displayName="Latitude" name="latitude" type="float" />
+		<property displayName="City" name="city" type="string" />
+		<property displayName="Country" name="country" type="string" />
+		<property displayName="Start Time" name="starttime" type="datetime" />
+		<property displayName="Stop Time" name="stoptime" type="datetime" />
+	</MeetingBusiness>
+	
+	<MeetingSocial>
+		<property displayName="Title" name="title" type="string" label="true" />
+		<property displayName="People" name="people" type="string[]" />
+		<property displayName="Street Address" name="streetaddress" type="string" />
+		<property displayName="Country Code" name="countrycode" type="string" />
+		<property displayName="Area" name="location.area" type="string" />
+		<property displayName="Name" name="location.name" type="string" />
+		<property displayName="Area Code" name="location.areacode" type="string" />
+		<property displayName="Longitude" name="longitude" type="float" />
+		<property displayName="Latitude" name="latitude" type="float" />
+		<property displayName="City" name="city" type="string" />
+		<property displayName="Country" name="country" type="string" />
+		<property displayName="Start Time" name="starttime" type="datetime" />
+		<property displayName="Stop Time" name="stoptime" type="datetime" />
+	</MeetingSocial>
+	
+	<Company>
+		<property displayName="Name" name="title" type="string" label="true" />
+	</Company>
+	
+	<EducationInstitution>
+		<property displayName="Name" name="title" type="string" label="true" />
+	</EducationInstitution>
+	
+	<Gang>
+		<property displayName="Name" name="title" type="string" label="true" />
+	</Gang>
+	
+	<OnlineGroup>
+		<property displayName="Name" name="title" type="string" label="true" />
+		<property displayName="URL" name="url" type="string" />
+	</OnlineGroup>
+	
+	<Organization>
+		<property displayName="Name" name="title" type="string" label="true" />
+	</Organization>
+	
+	<PoliticalMovement>
+		<property displayName="Name" name="title" type="string" label="true" />
+	</PoliticalMovement>
+	
+	<ReligiousGroup>
+		<property displayName="Name" name="title" type="string" label="true" />
+	</ReligiousGroup>
+	
+	<AS>
+		<property displayName="AS Number" name="as.number" type="string" label="true" />
+	</AS>
+	
+	<DNSName>
+		<property displayName="DNS Name" name="fqdn" type="string" label="true" />
+	</DNSName>
+	
+	<Domain>
+		<property displayName="DNS Name" name="fqdn" type="string" label="true" />
+		<property displayName="WHOIS Info" name="whois-info" type="string" />
+	</Domain>
+	
+	<IPv4Address>
+		<property displayName="IP Address" name="ipv4-address" type="string" label="true" />
+		<property displayName="Internal" name="ipaddress.internal" type="boolean" />
+	</IPv4Address>
+	
+	<MXRecord>
+		<property displayName="MX Record" name="fqdn" type="string" label="true" />
+		<property displayName="Priority" name="mxrecord.priority" type="int" />
+	</MXRecord>
+	
+	<NSRecord>
+		<property displayName="NS Record" name="fqdn" type="string" label="true" />
+	</NSRecord>
+	
+	<Netblock>
+		<property displayName="IP Range" name="ipv4-range" type="string" label="true" />
+	</Netblock>
+	
+	<URL>
+		<property displayName="URL" name="url" type="url" label="true" />
+		<property displayName="Title" name="title" type="string" />
+		<property displayName="Short title" name="short-title" type="string" />
+	</URL>
+	
+	<Website>
+		<property displayName="Website" name="fqdn" type="string" label="true" />
+		<property displayName="Ports" name="ports" type="int[]" />
+		<property displayName="SSL Enabled" name="website.ssl-enabled" type="boolean" />
+	</Website>
+	
+	<Airport>		
+		<property displayName="Name" name="location.name" type="string" label="true" />
+		<property displayName="Street Address" name="streetaddress" type="string" />
+		<property displayName="Country Code" name="countrycode" type="string" />
+		<property displayName="Area" name="location.area" type="string" />		
+		<property displayName="Area Code" name="location.areacode" type="string" />
+		<property displayName="Longitude" name="longitude" type="float" />
+		<property displayName="Latitude" name="latitude" type="float" />
+		<property displayName="City" name="city" type="string" />
+		<property displayName="Country" name="country" type="string" />
+	</Airport>
+	
+	<Church>		
+		<property displayName="Name" name="location.name" type="string" label="true" />
+		<property displayName="Street Address" name="streetaddress" type="string" />
+		<property displayName="Country Code" name="countrycode" type="string" />
+		<property displayName="Area" name="location.area" type="string" />		
+		<property displayName="Area Code" name="location.areacode" type="string" />
+		<property displayName="Longitude" name="longitude" type="float" />
+		<property displayName="Latitude" name="latitude" type="float" />
+		<property displayName="City" name="city" type="string" />
+		<property displayName="Country" name="country" type="string" />
+	</Church>
+	
+	<City>		
+		<property displayName="Name" name="location.name" type="string" label="true" />
+		<property displayName="Street Address" name="streetaddress" type="string" />
+		<property displayName="Country Code" name="countrycode" type="string" />
+		<property displayName="Area" name="location.area" type="string" />		
+		<property displayName="Area Code" name="location.areacode" type="string" />
+		<property displayName="Longitude" name="longitude" type="float" />
+		<property displayName="Latitude" name="latitude" type="float" />
+		<property displayName="City" name="city" type="string" />
+		<property displayName="Country" name="country" type="string" />
+	</City>
+	
+	<Country>		
+		<property displayName="Name" name="location.name" type="string" label="true" />
+		<property displayName="Street Address" name="streetaddress" type="string" />
+		<property displayName="Country Code" name="countrycode" type="string" />
+		<property displayName="Area" name="location.area" type="string" />		
+		<property displayName="Area Code" name="location.areacode" type="string" />
+		<property displayName="Longitude" name="longitude" type="float" />
+		<property displayName="Latitude" name="latitude" type="float" />
+		<property displayName="City" name="city" type="string" />
+		<property displayName="Country" name="country" type="string" />
+	</Country>
+	
+	<CrimeScene>		
+		<property displayName="Name" name="location.name" type="string" label="true" />
+		<property displayName="Street Address" name="streetaddress" type="string" />
+		<property displayName="Country Code" name="countrycode" type="string" />
+		<property displayName="Area" name="location.area" type="string" />		
+		<property displayName="Area Code" name="location.areacode" type="string" />
+		<property displayName="Longitude" name="longitude" type="float" />
+		<property displayName="Latitude" name="latitude" type="float" />
+		<property displayName="City" name="city" type="string" />
+		<property displayName="Country" name="country" type="string" />
+	</CrimeScene>
+	
+	<Harbor>		
+		<property displayName="Name" name="location.name" type="string" label="true" />
+		<property displayName="Street Address" name="streetaddress" type="string" />
+		<property displayName="Country Code" name="countrycode" type="string" />
+		<property displayName="Area" name="location.area" type="string" />		
+		<property displayName="Area Code" name="location.areacode" type="string" />
+		<property displayName="Longitude" name="longitude" type="float" />
+		<property displayName="Latitude" name="latitude" type="float" />
+		<property displayName="City" name="city" type="string" />
+		<property displayName="Country" name="country" type="string" />
+	</Harbor>
+	
+	<Home>		
+		<property displayName="Name" name="location.name" type="string" label="true" />
+		<property displayName="Street Address" name="streetaddress" type="string" />
+		<property displayName="Country Code" name="countrycode" type="string" />
+		<property displayName="Area" name="location.area" type="string" />		
+		<property displayName="Area Code" name="location.areacode" type="string" />
+		<property displayName="Longitude" name="longitude" type="float" />
+		<property displayName="Latitude" name="latitude" type="float" />
+		<property displayName="City" name="city" type="string" />
+		<property displayName="Country" name="country" type="string" />
+	</Home>
+	
+	<Location>		
+		<property displayName="Name" name="location.name" type="string" label="true" />
+		<property displayName="Street Address" name="streetaddress" type="string" />
+		<property displayName="Country Code" name="countrycode" type="string" />
+		<property displayName="Area" name="location.area" type="string" />		
+		<property displayName="Area Code" name="location.areacode" type="string" />
+		<property displayName="Longitude" name="longitude" type="float" />
+		<property displayName="Latitude" name="latitude" type="float" />
+		<property displayName="City" name="city" type="string" />
+		<property displayName="Country" name="country" type="string" />
+	</Location>
+	
+	<Office>		
+		<property displayName="Name" name="location.name" type="string" label="true" />
+		<property displayName="Street Address" name="streetaddress" type="string" />
+		<property displayName="Country Code" name="countrycode" type="string" />
+		<property displayName="Area" name="location.area" type="string" />		
+		<property displayName="Area Code" name="location.areacode" type="string" />
+		<property displayName="Longitude" name="longitude" type="float" />
+		<property displayName="Latitude" name="latitude" type="float" />
+		<property displayName="City" name="city" type="string" />
+		<property displayName="Country" name="country" type="string" />
+	</Office>
+	
+	<Prison>		
+		<property displayName="Name" name="location.name" type="string" label="true" />
+		<property displayName="Street Address" name="streetaddress" type="string" />
+		<property displayName="Country Code" name="countrycode" type="string" />
+		<property displayName="Area" name="location.area" type="string" />		
+		<property displayName="Area Code" name="location.areacode" type="string" />
+		<property displayName="Longitude" name="longitude" type="float" />
+		<property displayName="Latitude" name="latitude" type="float" />
+		<property displayName="City" name="city" type="string" />
+		<property displayName="Country" name="country" type="string" />
+	</Prison>
+	
+	<Region>		
+		<property displayName="Name" name="location.name" type="string" label="true" />
+		<property displayName="Street Address" name="streetaddress" type="string" />
+		<property displayName="Country Code" name="countrycode" type="string" />
+		<property displayName="Area" name="location.area" type="string" />		
+		<property displayName="Area Code" name="location.areacode" type="string" />
+		<property displayName="Longitude" name="longitude" type="float" />
+		<property displayName="Latitude" name="latitude" type="float" />
+		<property displayName="City" name="city" type="string" />
+		<property displayName="Country" name="country" type="string" />
+	</Region>
+	
+	<Shop>		
+		<property displayName="Name" name="location.name" type="string" label="true" />
+		<property displayName="Street Address" name="streetaddress" type="string" />
+		<property displayName="Country Code" name="countrycode" type="string" />
+		<property displayName="Area" name="location.area" type="string" />		
+		<property displayName="Area Code" name="location.areacode" type="string" />
+		<property displayName="Longitude" name="longitude" type="float" />
+		<property displayName="Latitude" name="latitude" type="float" />
+		<property displayName="City" name="city" type="string" />
+		<property displayName="Country" name="country" type="string" />
+	</Shop>
+
+	<TrainStation>		
+		<property displayName="Name" name="location.name" type="string" label="true" />
+		<property displayName="Street Address" name="streetaddress" type="string" />
+		<property displayName="Country Code" name="countrycode" type="string" />
+		<property displayName="Area" name="location.area" type="string" />		
+		<property displayName="Area Code" name="location.areacode" type="string" />
+		<property displayName="Longitude" name="longitude" type="float" />
+		<property displayName="Latitude" name="latitude" type="float" />
+		<property displayName="City" name="city" type="string" />
+		<property displayName="Country" name="country" type="string" />
+	</TrainStation>
+	
+	<BusinessLeader>
+		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="First Names" name="person.firstnames" type="string" />			
+		<property displayName="Surname" name="person.surname" type="string" />
+	</BusinessLeader>
+	
+	<Businessman>
+		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="First Names" name="person.firstnames" type="string" />			
+		<property displayName="Surname" name="person.surname" type="string" />
+	</Businessman>
+	
+	<Child>
+		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="First Names" name="person.firstnames" type="string" />			
+		<property displayName="Surname" name="person.surname" type="string" />
+	</Child>
+	
+	<DrugDealer>
+		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="First Names" name="person.firstnames" type="string" />			
+		<property displayName="Surname" name="person.surname" type="string" />
+	</DrugDealer>
+	
+	<Female>
+		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="First Names" name="person.firstnames" type="string" />			
+		<property displayName="Surname" name="person.surname" type="string" />
+	</Female>
+	
+	<GangLeader>
+		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="First Names" name="person.firstnames" type="string" />			
+		<property displayName="Surname" name="person.surname" type="string" />
+	</GangLeader>
+	
+	<GangMember>
+		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="First Names" name="person.firstnames" type="string" />			
+		<property displayName="Surname" name="person.surname" type="string" />
+	</GangMember>
+	
+	<GovernmentOfficial>
+		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="First Names" name="person.firstnames" type="string" />			
+		<property displayName="Surname" name="person.surname" type="string" />
+	</GovernmentOfficial>
+	
+	<Judge>
+		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="First Names" name="person.firstnames" type="string" />			
+		<property displayName="Surname" name="person.surname" type="string" />
+	</Judge>
+	
+	<LawOfficer>
+		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="First Names" name="person.firstnames" type="string" />			
+		<property displayName="Surname" name="person.surname" type="string" />
+	</LawOfficer>
+	
+	<Lawyer>
+		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="First Names" name="person.firstnames" type="string" />			
+		<property displayName="Surname" name="person.surname" type="string" />
+	</Lawyer>
+	
+	<Male>
+		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="First Names" name="person.firstnames" type="string" />			
+		<property displayName="Surname" name="person.surname" type="string" />
+	</Male>
+	
+	<MilitaryOfficer>
+		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="First Names" name="person.firstnames" type="string" />			
+		<property displayName="Surname" name="person.surname" type="string" />
+	</MilitaryOfficer>
+	
+	<SexOffender>
+		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="First Names" name="person.firstnames" type="string" />			
+		<property displayName="Surname" name="person.surname" type="string" />
+	</SexOffender>
+	
+	<Terrorist>
+		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="First Names" name="person.firstnames" type="string" />			
+		<property displayName="Surname" name="person.surname" type="string" />
+	</Terrorist>
+	
+	<TerroristLeader>
+		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="First Names" name="person.firstnames" type="string" />			
+		<property displayName="Surname" name="person.surname" type="string" />
+	</TerroristLeader>
+	
+	<Unsub>
+		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="First Names" name="person.firstnames" type="string" />			
+		<property displayName="Surname" name="person.surname" type="string" />
+	</Unsub>
+	
+	<Alias>
+		<property displayName="Alias" name="alias" type="string" label="true" />
+	</Alias>
+	
+	<Document>
+		<property displayName="Title" name="title" type="string" label="true" />
+		<property displayName="Meta-Data" name="document.meta-data" type="string" />
+		<property displayName="URL" name="url" type="url" />
+	</Document>
+	
+	<EmailAddress>
+		<property displayName="Email Address" name="email" type="string" label="true" />
+	</EmailAddress>
+	
+	<Image>
+		<property displayName="Description" name="description" type="string" label="true" />
+		<property displayName="URL" name="url" type="url" />
+	</Image>
+	
+	<Person>
+		<property displayName="Full Name" name="person.fullname" type="string" label="true" />
+		<property displayName="First Names" name="person.firstnames" type="string" />			
+		<property displayName="Surname" name="person.surname" type="string" />
+	</Person>
+	
+	<PhoneNumber>
+		<property displayName="Phone Number" name="phonenumber" type="string" label="true" />
+		<property displayName="City Code" name="phonenumber.citycode" type="string" />
+		<property displayName="Country Code" name="phonenumber.countrycode" type="string" />
+		<property displayName="Area Code" name="phonenumber.areacode" type="string" />
+		<property displayName="Last Digits" name="phonenumber.lastnumbers" type="string" />
+	</PhoneNumber>
+	
+	<PhoneNumberMobile>
+		<property displayName="Phone Number" name="phonenumber" type="string" label="true" />
+		<property displayName="City Code" name="phonenumber.citycode" type="string" />
+		<property displayName="Country Code" name="phonenumber.countrycode" type="string" />
+		<property displayName="Area Code" name="phonenumber.areacode" type="string" />
+		<property displayName="Last Digits" name="phonenumber.lastnumbers" type="string" />
+	</PhoneNumberMobile>
+	
+	<PhoneNumberOffice>
+		<property displayName="Phone Number" name="phonenumber" type="string" label="true" />
+		<property displayName="City Code" name="phonenumber.citycode" type="string" />
+		<property displayName="Country Code" name="phonenumber.countrycode" type="string" />
+		<property displayName="Area Code" name="phonenumber.areacode" type="string" />
+		<property displayName="Last Digits" name="phonenumber.lastnumbers" type="string" />
+	</PhoneNumberOffice>
+	
+	<PhoneNumberResidential>
+		<property displayName="Phone Number" name="phonenumber" type="string" label="true" />
+		<property displayName="City Code" name="phonenumber.citycode" type="string" />
+		<property displayName="Country Code" name="phonenumber.countrycode" type="string" />
+		<property displayName="Area Code" name="phonenumber.areacode" type="string" />
+		<property displayName="Last Digits" name="phonenumber.lastnumbers" type="string" />
+	</PhoneNumberResidential>
+	
+	<Phrase>
+		<property displayName="Text" name="text" type="string" label="true" />
+	</Phrase>
+	
+	<affiliation.Facebook>
+		<property displayName="Name" name="person.name" type="string" label="true" />
+		<property displayName="Profile URL" name="affiliation.profile-url" type="string" />
+		<property displayName="Network" name="affiliation.network" type="string" />
+		<property displayName="UID" name="affiliation.uid" type="string" />
+	</affiliation.Facebook>
+	
+	<affiliation.LinkedIn>
+		<property displayName="Name" name="person.name" type="string" label="true" />
+		<property displayName="Profile URL" name="affiliation.profile-url" type="string" />
+		<property displayName="Network" name="affiliation.network" type="string" />
+		<property displayName="UID" name="affiliation.uid" type="string" />
+	</affiliation.LinkedIn>
+	
+	<affiliation.Twitter>
+		<property displayName="Name" name="person.name" type="string" label="true" />
+		<property displayName="Real Name" name="person.fullname" type="string" />
+		<property displayName="Twitter Number" name="twitter.number" type="int" />		
+		<property displayName="Profile URL" name="affiliation.profile-url" type="string" />
+		<property displayName="Screen Name" name="twitter.screen-name" type="string" />
+		<property displayName="Friend Count" name="twitter.friendcount" type="int" />				
+		<property displayName="Network" name="affiliation.network" type="string" />
+		<property displayName="UID" name="affiliation.uid" type="string" />
+	</affiliation.Twitter>
+	
+	<BankAccount>
+		<property displayName="Account Number" name="bank.accnumber" type="string" label="true" />
+		<property displayName="Branch Code" name="bank.branch" type="string" />
+		<property displayName="Bank" name="bank.name" type="string" />
+	</BankAccount>
+	
+	<FlightNumber>
+		<property displayName="Flight ID" name="flight.id" type="string" label="true" />
+		<property displayName="Airline" name="flight.airline" type="string" />
+		<property displayName="Date" name="flight.date" type="date" />
+		<property displayName="Flight Number" name="flight.number" type="string" />
+	</FlightNumber>
+	
+	<IdentificationNumber>
+		<property displayName="Number" name="identification.number" type="string" label="true" />
+	</IdentificationNumber>
+	
+	<MacAddress>
+		<property displayName="MAC Address" name="macaddress" type="string" label="true" />
+	</MacAddress>
+	
+	<PassportNumber>
+		<property displayName="Number" name="identification.number" type="string" label="true" />
+	</PassportNumber>
+	
+	<VehicleRegistration>
+		<property displayName="Registration Number" name="vehicle.registration" type="string" label="true" />
+	</VehicleRegistration>
+	
+	<VinNumber>
+		<property displayName="VIN Number" name="vinnumber" type="string" label="true" />
+	</VinNumber>
+	
+	<Bike>
+		<property displayName="Name" name="transport.name" type="string" label="true" />
+		<property displayName="Make" name="transport.make" type="string" />
+		<property displayName="Model" name="transport.model" type="string" />
+	</Bike>
+	
+	<Boat>
+		<property displayName="Name" name="transport.name" type="string" label="true" />
+		<property displayName="Make" name="transport.make" type="string" />
+		<property displayName="Model" name="transport.model" type="string" />
+	</Boat>
+	
+	<Bus>
+		<property displayName="Name" name="transport.name" type="string" label="true" />
+		<property displayName="Make" name="transport.make" type="string" />
+		<property displayName="Model" name="transport.model" type="string" />
+	</Bus>
+	
+	<Car>
+		<property displayName="Name" name="transport.name" type="string" label="true" />
+		<property displayName="Make" name="transport.make" type="string" />
+		<property displayName="Model" name="transport.model" type="string" />
+	</Car>
+	
+	<Plane>
+		<property displayName="Name" name="transport.name" type="string" label="true" />
+		<property displayName="Make" name="transport.make" type="string" />
+		<property displayName="Model" name="transport.model" type="string" />
+	</Plane>
+	
+	<Train>
+		<property displayName="Name" name="transport.name" type="string" label="true" />
+		<property displayName="Make" name="transport.make" type="string" />
+		<property displayName="Model" name="transport.model" type="string" />
+	</Train>
+	
+	<Ammunition>
+		<property displayName="Type" name="weapon.type" type="string" label="true" />
+	</Ammunition>
+	
+	<BioWeapon>
+		<property displayName="Type" name="weapon.type" type="string" label="true" />
+	</BioWeapon>
+	
+	<Blade>
+		<property displayName="Type" name="weapon.type" type="string" label="true" />
+	</Blade>
+	
+	<ChemicalWeapon>
+		<property displayName="Type" name="weapon.type" type="string" label="true" />
+	</ChemicalWeapon>
+	
+	<Explosive>
+		<property displayName="Type" name="weapon.type" type="string" label="true" />
+	</Explosive>
+	
+	<Gun>
+		<property displayName="Type" name="weapon.type" type="string" label="true" />
+	</Gun>
+	
+	<IED>
+		<property displayName="Type" name="weapon.type" type="string" label="true" />
+	</IED>
+	
+	<Missile>
+		<property displayName="Type" name="weapon.type" type="string" label="true" />
+	</Missile>
+	
+	<NuclearWeapon>
+		<property displayName="Type" name="weapon.type" type="string" label="true" />
+	</NuclearWeapon>
+</maltego>

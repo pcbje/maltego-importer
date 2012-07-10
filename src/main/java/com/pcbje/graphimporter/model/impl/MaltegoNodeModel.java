@@ -2,8 +2,10 @@ package com.pcbje.graphimporter.model.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.pcbje.graphimporter.model.EdgeModel;
+import com.pcbje.graphimporter.model.EntityDefinition;
 import com.pcbje.graphimporter.model.NodeModel;
 import com.pcbje.graphimporter.model.PropertyModel;
 
@@ -13,15 +15,27 @@ public class MaltegoNodeModel implements NodeModel {
 	
 	private final List<EdgeModel> edges;
 	
-	private final List<PropertyModel> properties;
+	private final Map<String, PropertyModel> properties;
+	
+	private static EntityDefinition entityDefs;
 	
 	public MaltegoNodeModel(String type, String label) {
-		this.id = label;
+		this.id = type + "_" + label;
 		this.type = type;
 		
 		edges = new ArrayList<EdgeModel>();
 		
-		properties = new MaltegoNodeType().getProperties(type, label);
+		if (entityDefs == null) {
+			entityDefs = new MaltegoEntityDefinition();
+		}
+		
+		properties = entityDefs.getProperties(type);	
+		
+		for (PropertyModel property : properties.values()) {
+			if (property.isLabelProperty()) {
+				property.setValue(label);
+			}
+		}
 	}
 
 	public String getNodeId() {
@@ -32,7 +46,7 @@ public class MaltegoNodeModel implements NodeModel {
 		return type;
 	}
 
-	public List<PropertyModel> getProperties() {
+	public Map<String, PropertyModel> getProperties() {
 		return properties;
 	}
 	

@@ -1,49 +1,45 @@
 package com.pcbje.graphimporter.model.impl;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
-import com.pcbje.graphimporter.model.NodeType;
+import com.pcbje.graphimporter.model.EntityDefinition;
 import com.pcbje.graphimporter.model.PropertyModel;
 
-public class MaltegoNodeType implements NodeType {
+public class MaltegoEntityDefinition implements EntityDefinition {
+	private Logger logger = Logger.getLogger(MaltegoEntityDefinition.class
+			.getName());
+
 	private Element types;
 
-	public MaltegoNodeType() {
+	public MaltegoEntityDefinition() {
 		DocumentBuilderFactory factory = null;
 		DocumentBuilder builder = null;
 
 		try {
 			factory = DocumentBuilderFactory.newInstance();
 			builder = factory.newDocumentBuilder();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		}
 
-		try {
 			types = (Element) builder.parse(
-					new InputSource(ClassLoader.class
-							.getResourceAsStream("maltego-node-types.xml")))
-					.getFirstChild();
+					new InputSource(this.getClass().getClassLoader()
+							.getResource("maltego-entity-definitions.xml")
+							.openStream())).getFirstChild();
 
-		} catch (SAXException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			logger.log(Level.WARNING, e.getMessage(), e);
 		}
 	}
 
-	public List<PropertyModel> getProperties(String type, String label) {
+	public Map<String, PropertyModel> getProperties(String type) {
 		if (types.getElementsByTagName(type).getLength() == 0) {
 			throw new RuntimeException("I don't know the nodetype " + type
 					+ ".");
@@ -53,19 +49,21 @@ public class MaltegoNodeType implements NodeType {
 
 		NodeList propertyElements = nodeType.getElementsByTagName("property");
 
-		List<PropertyModel> properties = new ArrayList<PropertyModel>();
+		Map<String, PropertyModel> properties = new HashMap<String, PropertyModel>();
 
 		Element property;
 
 		for (int c = 0; c < propertyElements.getLength(); c++) {
 			property = (Element) propertyElements.item(c);
 
-			properties.add(new MaltegoPropertyModel(property
-					.getAttribute("name"), property.getAttribute("displayName"),
-					property.getAttribute("type"), property
-							.getAttribute("value")));
+			properties.put(
+					property.getAttribute("name"),
+					new MaltegoPropertyModel(property.getAttribute("name"),
+							property.getAttribute("displayName"), property
+									.getAttribute("type"), property
+									.getAttribute("label").equals("true")));
 		}
-		
+
 		return properties;
 	}
 
