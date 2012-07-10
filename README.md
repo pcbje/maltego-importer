@@ -1,4 +1,4 @@
-### Format
+#### Format
 
 <code>NodeTypeA,NodeLabelA,NodeTypeB,NodeLabelB,EdgeLabel</code>
 
