@@ -3,7 +3,6 @@ package com.pcbje.graphimporter.graph.impl;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,10 +13,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
-import com.pcbje.graphimporter.graph.PropertyEntity;
-import com.pcbje.graphimporter.graph.impl.MaltegoEdge;
-import com.pcbje.graphimporter.graph.impl.MaltegoNode;
 
 
 /**
@@ -33,10 +28,8 @@ public class MaltegoEdgeTest {
         
         MaltegoEdge edge = new MaltegoEdge("edge id", "edge type", source, target);
         
-        assertEquals("src id", edge.getSourceNode().getId());
-        assertEquals("target id", edge.getTargetNode().getId());
-        
-        
+        assertEquals("src id", edge.getSourceNodeId());
+        assertEquals("target id", edge.getTargetNodeId());
     }
     
     @Test(expected = RuntimeException.class)

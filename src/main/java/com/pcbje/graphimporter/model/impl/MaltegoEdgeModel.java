@@ -9,6 +9,8 @@ import com.pcbje.graphimporter.model.PropertyModel;
 
 public class MaltegoEdgeModel implements EdgeModel {
 	private final String id;
+	private final String type;
+	
 	private final NodeModel sourceNode;
 	private final NodeModel targetNode;
 	
@@ -16,8 +18,12 @@ public class MaltegoEdgeModel implements EdgeModel {
 	
 	private final Map<String, PropertyModel> properties;
 	
+	private static int ID_COUNTER = 0;
+	
 	public MaltegoEdgeModel(NodeModel sourceNode, NodeModel targetNode, String label) {
-		this.id = sourceNode.getNodeId() + "_" + targetNode.getNodeId();
+		this.id = "e" + Integer.toString(ID_COUNTER++);
+		this.type = "maltego.link.manual-link";
+		
 		this.sourceNode = sourceNode;
 		this.targetNode = targetNode;
 		
@@ -30,14 +36,18 @@ public class MaltegoEdgeModel implements EdgeModel {
 		properties.get("maltego.link.manual.type").setValue(label);
 		properties.get("maltego.link.show-label").setValue("0");
 		properties.get("maltego.link.thickness").setValue("2");
-		properties.get("maltego.link.style").setValue("1");
+		properties.get("maltego.link.style").setValue("0");
 		properties.get("maltego.link.color").setValue("8421505");
 	}
 
 	public String getId() {
 		return id;
 	}
-
+	
+	public String getType() {
+		return type;
+	}
+	
 	public NodeModel getSourceNode() {
 		return sourceNode;
 	}

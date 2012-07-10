@@ -4,6 +4,7 @@ import java.util.Map;
 
 public interface EdgeModel {
 	public String getId();
+	public String getType();
 	public NodeModel getSourceNode();
 	public NodeModel getTargetNode();
 	

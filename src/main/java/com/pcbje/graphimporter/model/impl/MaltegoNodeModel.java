@@ -19,9 +19,11 @@ public class MaltegoNodeModel implements NodeModel {
 	
 	private static EntityDefinition entityDefs;
 	
+	private static int ID_COUNTER = 0;
+	
 	public MaltegoNodeModel(String type, String label) {
-		this.id = type + "_" + label;
-		this.type = type;
+		this.id = "n" + Integer.toString(ID_COUNTER++);
+		this.type = "maltego." + type;
 		
 		edges = new ArrayList<EdgeModel>();
 		

@@ -7,11 +7,25 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.pcbje.graphimporter.graph.PropertyEntity;
+import com.pcbje.graphimporter.model.PropertyModel;
 
 public class MaltegoProperty implements PropertyEntity {
 	private final Map<String, String> propertyValues;
 	
 	private final String value;
+	
+	public MaltegoProperty(PropertyModel model) {
+		propertyValues = new HashMap<String, String>();
+		
+		propertyValues.put("name", model.getName());
+		propertyValues.put("displayName", model.getDisplayName());
+		propertyValues.put("type", model.getType());
+		propertyValues.put("hidden", "false");
+		propertyValues.put("nullable", "true");
+		propertyValues.put("readonly", "false");
+		
+		this.value = model.getValue();
+	}
 	
 	public MaltegoProperty(String name, String displayName, String type, String value) {
 		propertyValues = new HashMap<String, String>();

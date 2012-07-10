@@ -27,8 +27,8 @@ public class MaltegoGraphTest {
         
         MaltegoNode second = new MaltegoNode("id", "type");
         
-        graph.addNode("id", first);
-        graph.addNode("id", second);
+        graph.addNode(first);
+        graph.addNode(second);
         
         assertEquals(1, graph.getNodes().size());
     }
@@ -40,8 +40,8 @@ public class MaltegoGraphTest {
         MaltegoEdge first = new MaltegoEdge("edge id", "edge type", null, null);
         MaltegoEdge second = new MaltegoEdge("edge id", "edge type", null, null);
         
-        graph.addEdge(first.getId(), first);
-        graph.addEdge(second.getId(), second);
+        graph.addEdge(first);
+        graph.addEdge(second);
         
         assertEquals(1, graph.getEdges().size());
     }
@@ -53,13 +53,12 @@ public class MaltegoGraphTest {
         MaltegoNode first = new MaltegoNode("node 1", "type1");
         MaltegoNode second = new MaltegoNode("node 2", "type2");
                 
-        graph.addNode(first.getId(), first);
-        graph.addNode(second.getId(), second);
+        graph.addNode(first);
+        graph.addNode(second);
         
         MaltegoEdge edge = new MaltegoEdge("edge id", "edge type", first, second);
-        
-        
-        graph.addEdge(edge.getId(), edge);
+                
+        graph.addEdge(edge);
         
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = docFactory.newDocumentBuilder();

@@ -8,6 +8,8 @@ import org.w3c.dom.Element;
 
 import com.pcbje.graphimporter.graph.NodeEntity;
 import com.pcbje.graphimporter.graph.PropertyEntity;
+import com.pcbje.graphimporter.model.NodeModel;
+import com.pcbje.graphimporter.model.PropertyModel;
 
 /**
  * 
@@ -19,6 +21,17 @@ public class MaltegoNode implements NodeEntity {
 
 	private List<PropertyEntity> properties;
 
+	public MaltegoNode(NodeModel model) {
+		this.id = model.getNodeId();
+		this.type = model.getNodeType();
+		
+		properties = new ArrayList<PropertyEntity>();
+
+		for (PropertyModel property : model.getProperties().values()) {
+			properties.add(new MaltegoProperty(property));
+		}
+	}
+		
 	public MaltegoNode(String id, String type) {
 		this.id = id;
 		this.type = type;
