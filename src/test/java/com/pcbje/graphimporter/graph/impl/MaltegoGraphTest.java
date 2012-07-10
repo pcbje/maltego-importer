@@ -1,4 +1,4 @@
-package com.pcbje.casefileimporter.graph.impl;
+package com.pcbje.graphimporter.graph.impl;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;

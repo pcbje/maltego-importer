@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<maltego.entitytypes>
+	<maltego.Person>
+		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="First Names" name="person.firstname" type="string" label="false" />			
+		<property displayName="Surname" name="person.surname" type="string" label="false" />
+	</maltego.Person>
+</maltego.entitytypes>
