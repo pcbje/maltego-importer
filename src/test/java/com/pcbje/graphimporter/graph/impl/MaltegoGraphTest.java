@@ -37,8 +37,8 @@ public class MaltegoGraphTest {
     public void testAddEdgeIsMerges() {
         MaltegoGraph graph = new MaltegoGraph();
         
-        MaltegoEdge first = new MaltegoEdge("id", "oldlabel");
-        MaltegoEdge second = new MaltegoEdge("id", "newlabel");
+        MaltegoEdge first = new MaltegoEdge("edge id", "edge type", null, null);
+        MaltegoEdge second = new MaltegoEdge("edge id", "edge type", null, null);
         
         graph.addEdge(first.getId(), first);
         graph.addEdge(second.getId(), second);
@@ -56,9 +56,8 @@ public class MaltegoGraphTest {
         graph.addNode(first.getId(), first);
         graph.addNode(second.getId(), second);
         
-        MaltegoEdge edge = new MaltegoEdge("edge 1", "edge label 1");
-        edge.setSourceNode(first);
-        edge.setTargetNode(second);
+        MaltegoEdge edge = new MaltegoEdge("edge id", "edge type", first, second);
+        
         
         graph.addEdge(edge.getId(), edge);
         

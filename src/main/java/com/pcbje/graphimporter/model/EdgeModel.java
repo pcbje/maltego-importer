@@ -1,7 +1,12 @@
 package com.pcbje.graphimporter.model;
 
+import java.util.Map;
+
 public interface EdgeModel {
 	public String getId();
-	public String getLabel();
+	public NodeModel getSourceNode();
 	public NodeModel getTargetNode();
+	
+	public void setProperty(String key, PropertyModel property);
+	public Map<String, PropertyModel> getProperties();
 }

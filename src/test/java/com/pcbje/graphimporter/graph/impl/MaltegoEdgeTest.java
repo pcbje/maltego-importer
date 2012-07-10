@@ -28,13 +28,10 @@ public class MaltegoEdgeTest {
     
     @Test
     public void testSetEdgeSourceAndDestination() {
-        MaltegoEdge edge = new MaltegoEdge("edge id", "edge label");
-        
         MaltegoNode source = new MaltegoNode("src id", "srctype");        
         MaltegoNode target = new MaltegoNode("target id", "desttype");
         
-        edge.setSourceNode(source);
-        edge.setTargetNode(target);
+        MaltegoEdge edge = new MaltegoEdge("edge id", "edge type", source, target);
         
         assertEquals("src id", edge.getSourceNode().getId());
         assertEquals("target id", edge.getTargetNode().getId());
@@ -44,26 +41,11 @@ public class MaltegoEdgeTest {
     
     @Test(expected = RuntimeException.class)
     public void testEdgeIdImmutable() {
-        MaltegoEdge first = new MaltegoEdge("id", "label");        
-        MaltegoEdge second = new MaltegoEdge("different id", "label");
+        MaltegoEdge first = new MaltegoEdge("edge id 1", "edge type", null, null);        
+        MaltegoEdge second = new MaltegoEdge("edge id 2", "edge type", null, null);
         
         first.mergeWith(second);
     }
-    
-    
-    @Test
-    public void testEdgeMerge() {
-        MaltegoEdge first = new MaltegoEdge("id", "label");               
-        MaltegoEdge second = new MaltegoEdge("id", "different label");
-        
-        first.mergeWith(second);
-        
-        List<PropertyEntity> props = first.getProperties();
-        
-        assertEquals("maltego.link.show-label", props.get(1).getPropertyValue("name"));
-        assertEquals("Thickness", props.get(2).getPropertyValue("displayName"));
-        assertEquals("int", props.get(3).getPropertyValue("type"));
-    }  
     
     @Test
     public void testGetEdgeGraphML() {
@@ -72,14 +54,12 @@ public class MaltegoEdgeTest {
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
             Document doc = docBuilder.newDocument();
             
-            MaltegoEdge edge = new MaltegoEdge("edge id", "edge label");
-            
-			MaltegoNode source = new MaltegoNode("src id","srctype");
+            MaltegoNode source = new MaltegoNode("src id","srctype");
             
 			MaltegoNode target = new MaltegoNode("target id", "desttype");
             
-            edge.setSourceNode(source);
-            edge.setTargetNode(target);
+            MaltegoEdge edge = new MaltegoEdge("edge id", "maltego.link.manual-link", source, target);
+            edge.addProperty(new MaltegoProperty("maltego.link.manual.type", "Label", "string", "edge label"));
             
             Element graphML = edge.getGraphML(doc);
             assertNotNull(graphML);
@@ -105,25 +85,7 @@ public class MaltegoEdgeTest {
             assertNotNull(showLabelProperty.getAttribute("name"));
             assertNotNull(showLabelProperty.getAttribute("nullable"));
             assertNotNull(showLabelProperty.getAttribute("readonly"));
-            assertNotNull(showLabelProperty.getAttribute("type"));
-            
-            assertEquals("edge label", properties.getElementsByTagName("mtg:Property").item(0).getFirstChild().getTextContent());
-            assertEquals("maltego.link.manual.type", ((Element) properties.getElementsByTagName("mtg:Property").item(0)).getAttribute("name"));
-            
-            assertEquals("1", properties.getElementsByTagName("mtg:Property").item(1).getFirstChild().getTextContent());
-            assertEquals("maltego.link.show-label", ((Element) properties.getElementsByTagName("mtg:Property").item(1)).getAttribute("name"));
-            
-            assertEquals("maltego.link.thickness", ((Element) properties.getElementsByTagName("mtg:Property").item(2)).getAttribute("name"));
-            
-            assertEquals("0", properties.getElementsByTagName("mtg:Property").item(3).getFirstChild().getTextContent());
-            assertEquals("maltego.link.style", ((Element) properties.getElementsByTagName("mtg:Property").item(3)).getAttribute("name"));
-            
-            assertEquals("", properties.getElementsByTagName("mtg:Property").item(4).getFirstChild().getTextContent());
-            assertEquals("maltego.link.manual.description", ((Element) properties.getElementsByTagName("mtg:Property").item(4)).getAttribute("name"));
-            
-            assertEquals("8421505", properties.getElementsByTagName("mtg:Property").item(5).getFirstChild().getTextContent());
-            assertEquals("maltego.link.color", ((Element) properties.getElementsByTagName("mtg:Property").item(5)).getAttribute("name"));
-            assertEquals("color", ((Element) properties.getElementsByTagName("mtg:Property").item(5)).getAttribute("type"));
+            assertNotNull(showLabelProperty.getAttribute("type"));       
             
             Element data1 = (Element) graphML.getElementsByTagName("data").item(1);
             assertNotNull(data1);

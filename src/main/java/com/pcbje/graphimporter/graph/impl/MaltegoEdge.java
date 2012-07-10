@@ -17,39 +17,28 @@ import com.pcbje.graphimporter.graph.PropertyEntity;
 public class MaltegoEdge implements EdgeEntity {	
     private final String id;
     private final String type;
-    private final List<PropertyEntity> properties;
+    
     private NodeEntity sourceNode;
     private NodeEntity targetNode;
 
-    public MaltegoEdge(String id, String label) {    	
-        this.id = id;
-        
-        type = "maltego.link.manual-link";
+    private final List<PropertyEntity> properties;
 
-        properties = new ArrayList<PropertyEntity>();
-        
-        properties.add(new MaltegoProperty("maltego.link.manual.type", "Label", "string", label));
-        properties.add(new MaltegoProperty("maltego.link.show-label", "Show label", "int", "1"));
-        properties.add(new MaltegoProperty("maltego.link.thickness", "Thickness", "int", "2"));
-        properties.add(new MaltegoProperty("maltego.link.style", "Style", "int", "0"));
-        properties.add(new MaltegoProperty("maltego.link.manual.description", "Description", "string", ""));
-        properties.add(new MaltegoProperty("maltego.link.color", "Color", "color", "8421505"));
+    public MaltegoEdge(String id, String type, NodeEntity sourceNode, NodeEntity targetNode) {    	
+    	this.id = id;
+    	this.type = type;
+    	
+    	this.sourceNode = sourceNode;
+    	this.targetNode = targetNode;
+    	
+    	properties = new ArrayList<PropertyEntity>();
     }
 
     public String getId() {
         return id;
     }
 
-    public void setSourceNode(NodeEntity sourceNode) {
-        this.sourceNode = sourceNode;
-    }
-
     public NodeEntity getSourceNode() {
         return sourceNode;
-    }
-
-    public void setTargetNode(NodeEntity targetNode) {
-        this.targetNode = targetNode;
     }
 
     public NodeEntity getTargetNode() {

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<maltego>
+<entities>
 	<DesktopComputer>
 		<property displayName="Device" name="device" type="string" label="true" />
 	</DesktopComputer>
@@ -603,4 +602,4 @@
 	<NuclearWeapon>
 		<property displayName="Type" name="weapon.type" type="string" label="true" />
 	</NuclearWeapon>
-</maltego>
+</entities>

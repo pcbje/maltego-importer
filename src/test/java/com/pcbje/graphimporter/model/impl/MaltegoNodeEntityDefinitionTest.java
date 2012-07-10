@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import com.pcbje.graphimporter.model.PropertyModel;
 
-public class MaltegoNodeTypeTest {
+public class MaltegoNodeEntityDefinitionTest {
 	MaltegoEntityDefinition type;
 
 	@Before

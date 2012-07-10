@@ -45,6 +45,10 @@ public class MaltegoNodeModel implements NodeModel {
 	public String getNodeType() {
 		return type;
 	}
+	
+	public void setProperty(String key, PropertyModel property) {
+		properties.put(key, property);
+	}
 
 	public Map<String, PropertyModel> getProperties() {
 		return properties;
