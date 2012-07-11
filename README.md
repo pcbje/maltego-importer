@@ -5,4 +5,4 @@ of generating valid GraphML with Maltego's special needs from various dataformat
 
 <code>NodeTypeA,NodeLabelA,NodeTypeB,NodeLabelB,EdgeLabel</code>
 
-The 'maltego.'-prefix on node types are added automatically.
+Supported entity types are listed in the enum [MaltegoEntity](https://github.com/pcbje/maltego-importer/blob/master/src/main/java/com/pcbje/maltegoimporter/model/impl/MaltegoEntity.java).
