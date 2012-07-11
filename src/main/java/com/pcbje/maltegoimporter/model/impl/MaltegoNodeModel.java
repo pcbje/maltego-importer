@@ -1,21 +1,16 @@
 package com.pcbje.maltegoimporter.model.impl;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.pcbje.maltegoimporter.model.EdgeModel;
 import com.pcbje.maltegoimporter.model.NodeModel;
 import com.pcbje.maltegoimporter.model.PropertyModel;
 
 public class MaltegoNodeModel implements NodeModel {
 	private final String id;
 	private final String type;
-
-	private final List<EdgeModel> edges;
 
 	private final Map<String, PropertyModel> properties;
 
@@ -32,8 +27,6 @@ public class MaltegoNodeModel implements NodeModel {
 		
 		this.type = type;
 
-		edges = new ArrayList<EdgeModel>();
-
 		if (entityDefs == null) {
 			entityDefs = new MaltegoEntityDefinition();
 		}
@@ -47,10 +40,16 @@ public class MaltegoNodeModel implements NodeModel {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getNodeId() {
 		return id;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getNodeType() {
 		return type;
 	}
@@ -69,18 +68,16 @@ public class MaltegoNodeModel implements NodeModel {
 		property.setValue(value);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Map<String, PropertyModel> getProperties() {
 		return properties;
 	}
 
-	public void addEdge(EdgeModel edge) {
-		edges.add(edge);
-	}
-
-	public List<EdgeModel> getEdges() {
-		return edges;
-	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	public Element getGraphML(Document doc) {
 		Element node = doc.createElement("node");
 		node.setAttribute("id", id);

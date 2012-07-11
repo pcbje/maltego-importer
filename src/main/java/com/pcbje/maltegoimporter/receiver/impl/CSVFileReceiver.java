@@ -14,7 +14,9 @@ import org.w3c.dom.Element;
 import com.pcbje.maltegoimporter.receiver.Receiver;
 
 public class CSVFileReceiver implements Receiver<File> {
-
+	/**
+	 * {@inheritDoc}
+	 */
 	public Element receive(Document doc, File data) {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(data));

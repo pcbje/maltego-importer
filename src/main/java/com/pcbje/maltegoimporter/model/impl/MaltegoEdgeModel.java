@@ -44,18 +44,30 @@ public class MaltegoEdgeModel implements EdgeModel {
 		properties.get("Color").setValue("8421505");
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getId() {
 		return id;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getType() {
 		return type;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public NodeModel getSourceNode() {
 		return sourceNode;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public NodeModel getTargetNode() {
 		return targetNode;
 	}
@@ -74,10 +86,16 @@ public class MaltegoEdgeModel implements EdgeModel {
 		property.setValue(value);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Map<String, PropertyModel> getProperties() {
 		return properties;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public Element getGraphML(Document doc) {
         Element edge = doc.createElement("edge");
         edge.setAttribute("id", id);

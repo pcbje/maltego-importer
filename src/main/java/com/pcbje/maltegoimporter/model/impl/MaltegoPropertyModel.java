@@ -21,30 +21,51 @@ public class MaltegoPropertyModel implements PropertyModel {
 		this.labelProperty = labelProperty;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getDisplayName() {
 		return displayName;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getType() {
 		return type;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setValue(String value) {
 		this.value = value;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getValue() {
 		return value;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean isLabelProperty() {
 		return labelProperty;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public Element getGraphML(Document doc) {
 		Element element = doc.createElement("mtg:Property");
         element.setAttribute("displayName", displayName);

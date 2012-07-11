@@ -15,5 +15,8 @@ public interface PropertyHolderModel {
 	 */
 	public void setProperty(String propertyDisplayName, String value);
 
+	/**
+	 * @return The map of properties added to this object.
+	 */
 	public Map<String, PropertyModel> getProperties();
 }

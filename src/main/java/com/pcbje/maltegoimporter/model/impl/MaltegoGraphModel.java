@@ -32,22 +32,23 @@ public class MaltegoGraphModel implements GraphModel {
 		edges = new ArrayList<EdgeModel>();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public void addNode(NodeModel node) {		
 		nodes.add(node);
 	}
 
-	public List<NodeModel> getNodes() {
-		return nodes;
-	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	public void addEdge(EdgeModel edge) {
 		edges.add(edge);
 	}
 
-	public List<EdgeModel> getEdges() {
-		return edges;
-	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	public Element getGraphML(Document doc) {
 		Element graphML = doc.createElement("graphml");
 		graphML.setAttribute("xmlns", "http://graphml.graphdrawing.org/xmlns");

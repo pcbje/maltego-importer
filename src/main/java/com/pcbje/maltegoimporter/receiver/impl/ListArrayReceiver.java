@@ -22,6 +22,9 @@ public class ListArrayReceiver implements Receiver<List<String[]>> {
 	private static int NODE_B_VALUE = 3;
 	private static int EDGE_LABEL = 4;
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public Element receive(Document doc, List<String[]> data) {
 		
 		List<NodeModel> nodes = new ArrayList<NodeModel>();
