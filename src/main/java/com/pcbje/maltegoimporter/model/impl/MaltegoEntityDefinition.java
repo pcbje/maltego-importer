@@ -1,8 +1,5 @@
 package com.pcbje.maltegoimporter.model.impl;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -11,6 +8,7 @@ import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -22,38 +20,19 @@ public class MaltegoEntityDefinition implements EntityDefinition {
 	private Logger logger = Logger.getLogger(MaltegoEntityDefinition.class
 			.getName());
 
-	private final static String[] defFiles = new String[] {
-			"maltego-node-entity-definitions.xml",
-			"maltego-link-entity-definitions.xml" };
-
-	private Element types;
+	private Document types;
 
 	public MaltegoEntityDefinition() {
 		DocumentBuilderFactory factory = null;
-		DocumentBuilder builder = null;		
-		BufferedReader br;
-		
-		String entities = "<files>\n";
+		DocumentBuilder builder = null;
 
 		try {
 			factory = DocumentBuilderFactory.newInstance();
 			builder = factory.newDocumentBuilder();
 
-			for (String file : defFiles) {
-				br = new BufferedReader(new InputStreamReader(this.getClass()
-						.getClassLoader().getResource(file).openStream()));
-				String line;
-				while ((line = br.readLine()) != null) {
-					entities += line + "\n";
-				}
-			}
-			
-			entities += "</files>";
-
-			types = (Element) builder.parse(
-					new InputSource(new StringReader(entities)))
-					.getFirstChild();
-
+			types = builder.parse(new InputSource(this.getClass()
+					.getClassLoader().getResource("maltego-entities.xml")
+					.openStream()));
 		} catch (Exception e) {
 			logger.log(Level.WARNING, e.getMessage(), e);
 		}

@@ -1,5 +1,8 @@
 package com.pcbje.maltegoimporter.model.impl;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import com.pcbje.maltegoimporter.model.PropertyModel;
 
 public class MaltegoPropertyModel implements PropertyModel {
@@ -40,5 +43,21 @@ public class MaltegoPropertyModel implements PropertyModel {
 
 	public boolean isLabelProperty() {
 		return labelProperty;
+	}
+	
+	public Element getGraphML(Document doc) {
+		Element element = doc.createElement("mtg:Property");
+        element.setAttribute("displayName", displayName);
+        element.setAttribute("hidden", "false");
+        element.setAttribute("name", name);
+        element.setAttribute("nullable", "true");
+        element.setAttribute("readonly", "false");
+        element.setAttribute("type", type);
+        
+        Element valueElement = doc.createElement("mtg:Value");
+        valueElement.setTextContent(value);
+        element.appendChild(valueElement);
+        
+        return element;
 	}
 }

@@ -2,6 +2,9 @@ package com.pcbje.maltegoimporter.model.impl;
 
 import java.util.Map;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import com.pcbje.maltegoimporter.model.EdgeModel;
 import com.pcbje.maltegoimporter.model.EntityDefinition;
 import com.pcbje.maltegoimporter.model.NodeModel;
@@ -64,4 +67,36 @@ public class MaltegoEdgeModel implements EdgeModel {
 		return properties;
 	}
 
+	public Element getGraphML(Document doc) {
+        Element edge = doc.createElement("edge");
+        edge.setAttribute("id", id);
+        edge.setAttribute("source", sourceNode.getNodeId());
+        edge.setAttribute("target", targetNode.getNodeId());
+
+        Element data = doc.createElement("data");
+        data.setAttribute("key", "d6");
+        edge.appendChild(data);
+        
+        Element data2 = doc.createElement("data");
+        data2.setAttribute("key", "d7");
+        edge.appendChild(data2);
+        
+        Element linkRenderer = doc.createElement("mtg:LinkRenderer");
+        linkRenderer.setAttribute("xmlns:mtg", "http://maltego.paterva.com/xml/mtgx");
+        data2.appendChild(linkRenderer);
+
+        Element maltegoLink = doc.createElement("mtg:MaltegoLink");
+        maltegoLink.setAttribute("xmlns:mtg", "http://maltego.paterva.com/xml/mtgx");
+        maltegoLink.setAttribute("type", type);
+        data.appendChild(maltegoLink);
+
+        Element propertiesElement = doc.createElement("mtg:Properties");
+        maltegoLink.appendChild(propertiesElement);
+      
+        for (PropertyModel property : properties.values()) {
+        	propertiesElement.appendChild(property.getGraphML(doc));
+        }       
+
+        return edge;
+    }
 }

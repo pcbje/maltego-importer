@@ -1,4 +1,15 @@
-<entities>
+<MaltegoEntities>
+	<!-- Links -->
+	<link.manual-link>
+		<property displayName="Label" name="maltego.link.manual.type" type="string" label="true" />
+		<property displayName="Show Label" name="maltego.link.show-label" type="int" />
+		<property displayName="Thickness" name="maltego.link.thickness" type="int" />
+		<property displayName="Style" name="maltego.link.style" type="int" />
+		<property displayName="Description" name="maltego.link.manual.description" type="string" />
+		<property displayName="Color" name="maltego.link.color" type="color" />
+	</link.manual-link>
+		
+	<!-- Nodes -->
 	<DesktopComputer>
 		<property displayName="Device" name="device" type="string" label="true" />
 	</DesktopComputer>
@@ -602,4 +613,4 @@
 	<NuclearWeapon>
 		<property displayName="Type" name="weapon.type" type="string" label="true" />
 	</NuclearWeapon>
-</entities>
+</MaltegoEntities>

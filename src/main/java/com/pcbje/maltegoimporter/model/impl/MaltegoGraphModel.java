@@ -1,4 +1,4 @@
-package com.pcbje.maltegoimporter.graph.impl;
+package com.pcbje.maltegoimporter.model.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,48 +7,44 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import com.pcbje.maltegoimporter.graph.EdgeEntity;
-import com.pcbje.maltegoimporter.graph.GraphEntity;
-import com.pcbje.maltegoimporter.graph.NodeEntity;
+import com.pcbje.maltegoimporter.model.EdgeModel;
+import com.pcbje.maltegoimporter.model.GraphModel;
+import com.pcbje.maltegoimporter.model.NodeModel;
 
-/**
- * 
- * @author pcbje
- */
-public class MaltegoGraph implements GraphEntity {
+public class MaltegoGraphModel implements GraphModel {
 	private final String graphId;
 	private final String createdBy;
 	private final String subtitle;
 	private final String version;
 	private final String edgeDefault;
 
-	private final List<NodeEntity> nodes;
-	private final List<EdgeEntity> edges;
+	private final List<NodeModel> nodes;
+	private final List<EdgeModel> edges;
 
-	public MaltegoGraph() {
+	public MaltegoGraphModel() {
 		graphId = "G";
 		createdBy = "Maltego CaseFile Community";
 		subtitle = "";
 		version = "1.0.1.2483";
 		edgeDefault = "directed";
 
-		nodes = new ArrayList<NodeEntity>();
-		edges = new ArrayList<EdgeEntity>();
+		nodes = new ArrayList<NodeModel>();
+		edges = new ArrayList<EdgeModel>();
 	}
 
-	public void addNode(NodeEntity node) {		
+	public void addNode(NodeModel node) {		
 		nodes.add(node);
 	}
 
-	public List<NodeEntity> getNodes() {
+	public List<NodeModel> getNodes() {
 		return nodes;
 	}
 
-	public void addEdge(EdgeEntity edge) {
+	public void addEdge(EdgeModel edge) {
 		edges.add(edge);
 	}
 
-	public List<EdgeEntity> getEdges() {
+	public List<EdgeModel> getEdges() {
 		return edges;
 	}
 
@@ -81,11 +77,11 @@ public class MaltegoGraph implements GraphEntity {
 		graphElement.setAttribute("edgedefault", edgeDefault);
 		graphElement.setAttribute("id", graphId);
 
-		for (NodeEntity node : nodes) {
+		for (NodeModel node : nodes) {
 			graphElement.appendChild(node.getGraphML(doc));
 		}
 
-		for (EdgeEntity edge : edges) {
+		for (EdgeModel edge : edges) {
 			graphElement.appendChild(edge.getGraphML(doc));
 		}
 

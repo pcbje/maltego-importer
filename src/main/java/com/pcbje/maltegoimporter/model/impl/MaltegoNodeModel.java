@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import com.pcbje.maltegoimporter.model.EdgeModel;
 import com.pcbje.maltegoimporter.model.EntityDefinition;
 import com.pcbje.maltegoimporter.model.NodeModel;
@@ -62,6 +65,31 @@ public class MaltegoNodeModel implements NodeModel {
 
 	public List<EdgeModel> getEdges() {
 		return edges;
+	}
+	
+	public Element getGraphML(Document doc) {
+		Element node = doc.createElement("node");
+		node.setAttribute("id", id);
+
+		Element data = doc.createElement("data");
+		data.setAttribute("key", "d4");
+		node.appendChild(data);
+
+		Element maltegoEntity = doc.createElement("mtg:MaltegoEntity");
+		maltegoEntity.setAttribute("xmlns:mtg",
+				"http://maltego.paterva.com/xml/mtgx");
+		maltegoEntity.setAttribute("type", type);
+		data.appendChild(maltegoEntity);
+
+		Element props = doc.createElement("mtg:Properties");
+
+		for (PropertyModel property : properties.values()) {
+			props.appendChild(property.getGraphML(doc));
+		}
+
+		maltegoEntity.appendChild(props);
+
+		return node;
 	}
 
 }

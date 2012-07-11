@@ -14,7 +14,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.pcbje.maltegoimporter.receiver.impl.CSVFileDataReceiver;
+import com.pcbje.maltegoimporter.receiver.impl.CSVFileReceiver;
 
 public class GraphImporterDummyApp {
 	public static void main(String[] argv) {
@@ -25,7 +25,7 @@ public class GraphImporterDummyApp {
 		try {
 			builder = factory.newDocumentBuilder();
 			Document document = builder.newDocument();
-			Element element = new CSVFileDataReceiver().receive(document, input);
+			Element element = new CSVFileReceiver().receive(document, input);
 			TransformerFactory tranFactory = TransformerFactory.newInstance();
 			Transformer aTransformer = tranFactory.newTransformer();
 			Source src = new DOMSource(element);
