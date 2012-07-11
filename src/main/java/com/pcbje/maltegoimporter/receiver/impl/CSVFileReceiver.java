@@ -24,9 +24,16 @@ public class CSVFileReceiver implements Receiver<File> {
 			List<String[]> records = new ArrayList<String[]>();
 
 			String line;
+			String[] arr;
 
 			while ((line = br.readLine()) != null) {
-				records.add(line.trim().split(","));
+				arr = line.trim().split(",");
+				
+				for (int i=0; i<arr.length; i++) {
+					arr[i] = arr[i].trim();
+				}
+				
+				records.add(arr);
 			}
 			
 			br.close();
