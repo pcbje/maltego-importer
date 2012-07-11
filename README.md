@@ -3,6 +3,12 @@ of generating valid GraphML with Maltego's special needs from various dataformat
 
 #### Input format: CSV
 
-<code>NodeTypeA,NodeLabelA,NodeTypeB,NodeLabelB,EdgeLabel</code>
+<pre>
+GangMember, Jon Doe,   Male,       Some random guy, Shoots
+Female,     Some lady, Male,       Some random guy, Sees
+Female,     Some lady, LawOfficer, Policeman,       Calls
+LawOfficer, Policeman, Male,       Some random guy, Helps
+LawOfficer, Policeman, GangMember, Jon Doe,         Arrests
+</pre>
 
 Supported entity types are listed in [MaltegoEntity](https://github.com/pcbje/maltego-importer/blob/master/src/main/java/com/pcbje/maltegoimporter/model/impl/MaltegoEntity.java).
