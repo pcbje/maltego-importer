@@ -8,7 +8,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.pcbje.maltegoimporter.model.EdgeModel;
-import com.pcbje.maltegoimporter.model.EntityDefinition;
 import com.pcbje.maltegoimporter.model.NodeModel;
 import com.pcbje.maltegoimporter.model.PropertyModel;
 
@@ -20,7 +19,7 @@ public class MaltegoNodeModel implements NodeModel {
 
 	private final Map<String, PropertyModel> properties;
 
-	private static EntityDefinition entityDefs;
+	private static MaltegoEntityDefinition entityDefs;
 
 	private static int ID_COUNTER = 0;
 
@@ -106,5 +105,4 @@ public class MaltegoNodeModel implements NodeModel {
 
 		return node;
 	}
-
 }

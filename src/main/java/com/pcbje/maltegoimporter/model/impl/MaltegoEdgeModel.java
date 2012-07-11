@@ -6,7 +6,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.pcbje.maltegoimporter.model.EdgeModel;
-import com.pcbje.maltegoimporter.model.EntityDefinition;
 import com.pcbje.maltegoimporter.model.NodeModel;
 import com.pcbje.maltegoimporter.model.PropertyModel;
 
@@ -17,7 +16,7 @@ public class MaltegoEdgeModel implements EdgeModel {
 	private final NodeModel sourceNode;
 	private final NodeModel targetNode;
 	
-	private static EntityDefinition entityDefs;
+	private static MaltegoEntityDefinition entityDefs;
 	
 	private final Map<String, PropertyModel> properties;
 	

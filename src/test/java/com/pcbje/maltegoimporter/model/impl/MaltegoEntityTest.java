@@ -14,10 +14,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-import com.pcbje.maltegoimporter.model.EntityDefinition;
-
 public class MaltegoEntityTest {
-	private static EntityDefinition entityDefs;
+	private static MaltegoEntityDefinition entityDefs;
 
 	@Before
 	public void init() {

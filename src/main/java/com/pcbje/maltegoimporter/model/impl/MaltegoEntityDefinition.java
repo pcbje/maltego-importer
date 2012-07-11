@@ -13,10 +13,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-import com.pcbje.maltegoimporter.model.EntityDefinition;
 import com.pcbje.maltegoimporter.model.PropertyModel;
 
-public class MaltegoEntityDefinition implements EntityDefinition {
+public class MaltegoEntityDefinition {
 	private Logger logger = Logger.getLogger(MaltegoEntityDefinition.class
 			.getName());
 
