@@ -9,8 +9,10 @@ import com.pcbje.maltegoimporter.model.NodeModel;
 import com.pcbje.maltegoimporter.model.PropertyModel;
 
 public class MaltegoNodeModel implements NodeModel {
-	private final String id;
+	private String id;
+	
 	private final String type;
+	private final String label;
 
 	private final Map<String, PropertyModel> properties;
 
@@ -21,7 +23,12 @@ public class MaltegoNodeModel implements NodeModel {
 	public MaltegoNodeModel(String type, String label) {
 		this.id = "n" + Integer.toString(ID_COUNTER++);
 		
+		if (!type.startsWith("maltego.")) {
+			type = "maltego." + type;
+		}		
+		
 		this.type = type;
+		this.label = label;
 
 		if (entityDefs == null) {
 			entityDefs = new MaltegoEntityDefinition();
@@ -42,12 +49,20 @@ public class MaltegoNodeModel implements NodeModel {
 	public String getNodeId() {
 		return id;
 	}
+	
+	public void setNodeId(String id) {
+		this.id = id;
+	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public String getNodeType() {
 		return type;
+	}
+	
+	public String getNodeLabel() {
+		return label;
 	}
 
 	/**

@@ -1,7 +1,9 @@
 package com.pcbje.maltegoimporter.model.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -20,6 +22,8 @@ public class MaltegoGraphModel implements GraphModel {
 
 	private final List<NodeModel> nodes;
 	private final List<EdgeModel> edges;
+	
+	private final Map<String, String> uniqueNodes;
 
 	public MaltegoGraphModel() {
 		graphId = "G";
@@ -30,13 +34,24 @@ public class MaltegoGraphModel implements GraphModel {
 
 		nodes = new ArrayList<NodeModel>();
 		edges = new ArrayList<EdgeModel>();
+		
+		uniqueNodes = new HashMap<String, String>();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void addNode(NodeModel node) {		
-		nodes.add(node);
+	public void addNode(NodeModel node) {
+		String key = node.getNodeType() + "_" + node.getNodeLabel();
+		
+		if (!uniqueNodes.containsKey(key)) {
+			nodes.add(node);
+			
+			uniqueNodes.put(key, node.getNodeId());
+		}
+		else {
+			node.setNodeId(uniqueNodes.get(key));
+		}
 	}
 
 	/**
