@@ -21,31 +21,31 @@ public class MaltegoLinkEntityDefinitionTest {
 	@Test
 	public void testTypeDesktopComputer() {
 		Map<String, PropertyModel> props = type
-				.getProperties("link.manual-link");
+				.getProperties("maltego.link.manual-link");
 
 		assertEquals(6, props.size());
-		assertEquals(true, props.get("maltego.link.manual.type").isLabelProperty());
-		assertEquals("Label", props.get("maltego.link.manual.type").getDisplayName());
-		assertEquals("string", props.get("maltego.link.manual.type").getType());
+		assertEquals(true, props.get("Label").isLabelProperty());
+		assertEquals("Label", props.get("Label").getDisplayName());
+		assertEquals("string", props.get("Label").getType());
 		
-		assertEquals(false, props.get("maltego.link.show-label").isLabelProperty());
-		assertEquals("Show Label", props.get("maltego.link.show-label").getDisplayName());
-		assertEquals("int", props.get("maltego.link.show-label").getType());
+		assertEquals(false, props.get("Show Label").isLabelProperty());
+		assertEquals("Show Label", props.get("Show Label").getDisplayName());
+		assertEquals("int", props.get("Show Label").getType());
 		
-		assertEquals(false, props.get("maltego.link.thickness").isLabelProperty());
-		assertEquals("Thickness", props.get("maltego.link.thickness").getDisplayName());
-		assertEquals("int", props.get("maltego.link.thickness").getType());
+		assertEquals(false, props.get("Thickness").isLabelProperty());
+		assertEquals("Thickness", props.get("Thickness").getDisplayName());
+		assertEquals("int", props.get("Thickness").getType());
 		
-		assertEquals(false, props.get("maltego.link.style").isLabelProperty());
-		assertEquals("Style", props.get("maltego.link.style").getDisplayName());
-		assertEquals("int", props.get("maltego.link.style").getType());
+		assertEquals(false, props.get("Style").isLabelProperty());
+		assertEquals("Style", props.get("Style").getDisplayName());
+		assertEquals("int", props.get("Style").getType());
 		
-		assertEquals(false, props.get("maltego.link.manual.description").isLabelProperty());
-		assertEquals("Description", props.get("maltego.link.manual.description").getDisplayName());
-		assertEquals("string", props.get("maltego.link.manual.description").getType());
+		assertEquals(false, props.get("Description").isLabelProperty());
+		assertEquals("Description", props.get("Description").getDisplayName());
+		assertEquals("string", props.get("Description").getType());
 		
-		assertEquals(false, props.get("maltego.link.color").isLabelProperty());
-		assertEquals("Color", props.get("maltego.link.color").getDisplayName());
-		assertEquals("color", props.get("maltego.link.color").getType());
+		assertEquals(false, props.get("Color").isLabelProperty());
+		assertEquals("Color", props.get("Color").getDisplayName());
+		assertEquals("color", props.get("Color").getType());
 	}
 }

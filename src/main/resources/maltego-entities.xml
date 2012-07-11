@@ -322,103 +322,103 @@
 	</maltego.TrainStation>
 	
 	<maltego.BusinessLeader>
-		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="Full Name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
 	</maltego.BusinessLeader>
 	
 	<maltego.Businessman>
-		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="Full Name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
 	</maltego.Businessman>
 	
 	<maltego.Child>
-		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="Full Name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
 	</maltego.Child>
 	
 	<maltego.DrugDealer>
-		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="Full Name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
 	</maltego.DrugDealer>
 	
 	<maltego.Female>
-		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="Full Name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
 	</maltego.Female>
 	
 	<maltego.GangLeader>
-		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="Full Name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
 	</maltego.GangLeader>
 	
 	<maltego.GangMember>
-		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="Full Name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
 	</maltego.GangMember>
 	
 	<maltego.GovernmentOfficial>
-		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="Full Name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
 	</maltego.GovernmentOfficial>
 	
 	<maltego.Judge>
-		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="Full Name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
 	</maltego.Judge>
 	
 	<maltego.LawOfficer>
-		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="Full Name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
 	</maltego.LawOfficer>
 	
 	<maltego.Lawyer>
-		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="Full Name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
 	</maltego.Lawyer>
 	
 	<maltego.Male>
-		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="Full Name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
 	</maltego.Male>
 	
 	<maltego.MilitaryOfficer>
-		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="Full Name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
 	</maltego.MilitaryOfficer>
 	
 	<maltego.SexOffender>
-		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="Full Name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
 	</maltego.SexOffender>
 	
 	<maltego.Terrorist>
-		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="Full Name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
 	</maltego.Terrorist>
 	
 	<maltego.TerroristLeader>
-		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="Full Name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
 	</maltego.TerroristLeader>
 	
 	<maltego.Unsub>
-		<property displayName="Full name" name="person.fullname" type="string" label="true" />
+		<property displayName="Full Name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
 	</maltego.Unsub>

@@ -94,12 +94,12 @@ public class MaltegoGraphModel implements GraphModel {
 			String yFilesType) {
 		Element key = doc.createElement("key");
 
+		key.setAttribute("for", f);
+		key.setAttribute("id", id);
+		
 		if (attrName != null) {
 			key.setAttribute("attr.name", attrName);
 		}
-
-		key.setAttribute("for", f);
-		key.setAttribute("id", id);
 		
 		if (yFilesType != null) {
 			key.setAttribute("yfiles.type", yFilesType);
