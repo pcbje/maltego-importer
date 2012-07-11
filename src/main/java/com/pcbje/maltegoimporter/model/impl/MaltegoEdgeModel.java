@@ -25,6 +25,7 @@ public class MaltegoEdgeModel implements EdgeModel {
 	
 	public MaltegoEdgeModel(NodeModel sourceNode, NodeModel targetNode, String label) {
 		this.id = "e" + Integer.toString(ID_COUNTER++);
+		
 		this.type = "maltego.link.manual-link";
 		
 		this.sourceNode = sourceNode;
@@ -34,13 +35,14 @@ public class MaltegoEdgeModel implements EdgeModel {
 			entityDefs = new MaltegoEntityDefinition();
 		}
 		
-		properties = entityDefs.getProperties("link.manual-link");	
+		properties = entityDefs.getProperties(this.type);	
 		
-		properties.get("maltego.link.manual.type").setValue(label);
-		properties.get("maltego.link.show-label").setValue("0");
-		properties.get("maltego.link.thickness").setValue("2");
-		properties.get("maltego.link.style").setValue("0");
-		properties.get("maltego.link.color").setValue("8421505");
+		properties.get("Label").setValue(label);
+		properties.get("Show Label").setValue("0");
+		properties.get("Thickness").setValue("2");
+		properties.get("Style").setValue("0");
+		properties.get("Description").setValue("");
+		properties.get("Color").setValue("8421505");
 	}
 
 	public String getId() {
@@ -59,8 +61,18 @@ public class MaltegoEdgeModel implements EdgeModel {
 		return targetNode;
 	}
 
-	public void setProperty(String key, PropertyModel property) {
-		properties.put(key, property);
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setProperty(String propertyDisplayName, String value) {
+		PropertyModel property = properties.get(propertyDisplayName);
+
+		if (property == null) {
+			throw new RuntimeException("No properties of node type '" + type
+					+ "' has the display name '" + propertyDisplayName + "'");
+		}
+
+		property.setValue(value);
 	}
 
 	public Map<String, PropertyModel> getProperties() {

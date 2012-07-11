@@ -15,27 +15,32 @@ import com.pcbje.maltegoimporter.model.PropertyModel;
 public class MaltegoNodeModel implements NodeModel {
 	private final String id;
 	private final String type;
-	
+
 	private final List<EdgeModel> edges;
-	
+
 	private final Map<String, PropertyModel> properties;
-	
+
 	private static EntityDefinition entityDefs;
-	
+
 	private static int ID_COUNTER = 0;
-	
+
 	public MaltegoNodeModel(String type, String label) {
 		this.id = "n" + Integer.toString(ID_COUNTER++);
-		this.type = "maltego." + type;
 		
+		if (!type.contains("maltego.")) {
+			type = "maltego." + type;
+		}
+		
+		this.type = type;
+
 		edges = new ArrayList<EdgeModel>();
-		
+
 		if (entityDefs == null) {
 			entityDefs = new MaltegoEntityDefinition();
 		}
-		
-		properties = entityDefs.getProperties(type);	
-		
+
+		properties = entityDefs.getProperties(this.type);
+
 		for (PropertyModel property : properties.values()) {
 			if (property.isLabelProperty()) {
 				property.setValue(label);
@@ -50,15 +55,25 @@ public class MaltegoNodeModel implements NodeModel {
 	public String getNodeType() {
 		return type;
 	}
-	
-	public void setProperty(String key, PropertyModel property) {
-		properties.put(key, property);
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setProperty(String propertyDisplayName, String value) {
+		PropertyModel property = properties.get(propertyDisplayName);
+
+		if (property == null) {
+			throw new RuntimeException("No properties of node type '" + type
+					+ "' has the display name '" + propertyDisplayName + "'");
+		}
+
+		property.setValue(value);
 	}
 
 	public Map<String, PropertyModel> getProperties() {
 		return properties;
 	}
-	
+
 	public void addEdge(EdgeModel edge) {
 		edges.add(edge);
 	}
@@ -66,7 +81,7 @@ public class MaltegoNodeModel implements NodeModel {
 	public List<EdgeModel> getEdges() {
 		return edges;
 	}
-	
+
 	public Element getGraphML(Document doc) {
 		Element node = doc.createElement("node");
 		node.setAttribute("id", id);

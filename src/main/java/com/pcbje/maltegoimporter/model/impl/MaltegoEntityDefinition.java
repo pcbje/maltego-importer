@@ -56,7 +56,7 @@ public class MaltegoEntityDefinition implements EntityDefinition {
 			property = (Element) propertyElements.item(c);
 
 			properties.put(
-					property.getAttribute("name"),
+					property.getAttribute("displayName"),
 					new MaltegoPropertyModel(property.getAttribute("name"),
 							property.getAttribute("displayName"), property
 									.getAttribute("type"), property

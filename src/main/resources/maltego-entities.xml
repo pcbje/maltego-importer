@@ -1,52 +1,52 @@
 <MaltegoEntities>
 	<!-- Links -->
-	<link.manual-link>
+	<maltego.link.manual-link>
 		<property displayName="Label" name="maltego.link.manual.type" type="string" label="true" />
 		<property displayName="Show Label" name="maltego.link.show-label" type="int" />
 		<property displayName="Thickness" name="maltego.link.thickness" type="int" />
 		<property displayName="Style" name="maltego.link.style" type="int" />
 		<property displayName="Description" name="maltego.link.manual.description" type="string" />
 		<property displayName="Color" name="maltego.link.color" type="color" />
-	</link.manual-link>
+	</maltego.link.manual-link>
 		
 	<!-- Nodes -->
-	<DesktopComputer>
+	<maltego.DesktopComputer>
 		<property displayName="Device" name="device" type="string" label="true" />
-	</DesktopComputer>
+	</maltego.DesktopComputer>
 	
-	<Device>
+	<maltego.Device>
 		<property displayName="Device" name="device" type="string" label="true" />
-	</Device>
+	</maltego.Device>
 	
-	<MobileComputer>
+	<maltego.MobileComputer>
 		<property displayName="Device" name="device" type="string" label="true" />
-	</MobileComputer>
+	</maltego.MobileComputer>
 	
-	<MobilePhone>
+	<maltego.MobilePhone>
 		<property displayName="Device" name="device" type="string" label="true" />
-	</MobilePhone>
+	</maltego.MobilePhone>
 	
-	<Smartphone>
+	<maltego.Smartphone>
 		<property displayName="Device" name="device" type="string" label="true" />
-	</Smartphone>
+	</maltego.Smartphone>
 	
-	<ConversationEmail>
+	<maltego.ConversationEmail>
 		<property displayName="Title" name="title" type="string" label="true" />
 		<property displayName="Recipient Emails" name="email.recipients" type="string[]" />
 		<property displayName="Sender Email" name="email" type="string" />
 		<property displayName="People" name="people" type="string[]" />		
-	</ConversationEmail>
+	</maltego.ConversationEmail>
 
-	<ConversationPhone>
+	<maltego.ConversationPhone>
 		<property displayName="Title" name="title" type="string" label="true" />
 		<property displayName="Caller Number" name="phonenumber.caller" type="string" />
 		<property displayName="Callee Number" name="phonenumber.callee" type="string" />
 		<property displayName="People" name="people" type="string[]" />
 		<property displayName="Duration" name="duration" type="timespan" />
 		<property displayName="Start time" name="starttime" type="datetime" />
-	</ConversationPhone>
+	</maltego.ConversationPhone>
 
-	<Incident>
+	<maltego.Incident>
 		<property displayName="Title" name="title" type="string" label="true" />
 		<property displayName="Street Address" name="streetaddress" type="string" />
 		<property displayName="Country Code" name="countrycode" type="string" />
@@ -59,25 +59,9 @@
 		<property displayName="Country" name="country" type="string" />
 		<property displayName="Start Time" name="starttime" type="datetime" />
 		<property displayName="Stop Time" name="stoptime" type="datetime" />
-	</Incident>
+	</maltego.Incident>
 	
-	<MeetingBusiness>
-		<property displayName="Title" name="title" type="string" label="true" />
-		<property displayName="People" name="people" type="string[]" />
-		<property displayName="Street Address" name="streetaddress" type="string" />
-		<property displayName="Country Code" name="countrycode" type="string" />
-		<property displayName="Area" name="location.area" type="string" />
-		<property displayName="Name" name="location.name" type="string" />
-		<property displayName="Area Code" name="location.areacode" type="string" />
-		<property displayName="Longitude" name="longitude" type="float" />
-		<property displayName="Latitude" name="latitude" type="float" />
-		<property displayName="City" name="city" type="string" />
-		<property displayName="Country" name="country" type="string" />
-		<property displayName="Start Time" name="starttime" type="datetime" />
-		<property displayName="Stop Time" name="stoptime" type="datetime" />
-	</MeetingBusiness>
-	
-	<MeetingSocial>
+	<maltego.MeetingBusiness>
 		<property displayName="Title" name="title" type="string" label="true" />
 		<property displayName="People" name="people" type="string[]" />
 		<property displayName="Street Address" name="streetaddress" type="string" />
@@ -91,81 +75,97 @@
 		<property displayName="Country" name="country" type="string" />
 		<property displayName="Start Time" name="starttime" type="datetime" />
 		<property displayName="Stop Time" name="stoptime" type="datetime" />
-	</MeetingSocial>
+	</maltego.MeetingBusiness>
 	
-	<Company>
+	<maltego.MeetingSocial>
+		<property displayName="Title" name="title" type="string" label="true" />
+		<property displayName="People" name="people" type="string[]" />
+		<property displayName="Street Address" name="streetaddress" type="string" />
+		<property displayName="Country Code" name="countrycode" type="string" />
+		<property displayName="Area" name="location.area" type="string" />
+		<property displayName="Name" name="location.name" type="string" />
+		<property displayName="Area Code" name="location.areacode" type="string" />
+		<property displayName="Longitude" name="longitude" type="float" />
+		<property displayName="Latitude" name="latitude" type="float" />
+		<property displayName="City" name="city" type="string" />
+		<property displayName="Country" name="country" type="string" />
+		<property displayName="Start Time" name="starttime" type="datetime" />
+		<property displayName="Stop Time" name="stoptime" type="datetime" />
+	</maltego.MeetingSocial>
+	
+	<maltego.Company>
 		<property displayName="Name" name="title" type="string" label="true" />
-	</Company>
+	</maltego.Company>
 	
-	<EducationInstitution>
+	<maltego.EducationInstitution>
 		<property displayName="Name" name="title" type="string" label="true" />
-	</EducationInstitution>
+	</maltego.EducationInstitution>
 	
-	<Gang>
+	<maltego.Gang>
 		<property displayName="Name" name="title" type="string" label="true" />
-	</Gang>
+	</maltego.Gang>
 	
-	<OnlineGroup>
+	<maltego.OnlineGroup>
 		<property displayName="Name" name="title" type="string" label="true" />
 		<property displayName="URL" name="url" type="string" />
-	</OnlineGroup>
+	</maltego.OnlineGroup>
 	
-	<Organization>
+	<maltego.Organization>
 		<property displayName="Name" name="title" type="string" label="true" />
-	</Organization>
+	</maltego.Organization>
 	
-	<PoliticalMovement>
+	<maltego.PoliticalMovement>
 		<property displayName="Name" name="title" type="string" label="true" />
-	</PoliticalMovement>
+	</maltego.PoliticalMovement>
 	
-	<ReligiousGroup>
+	<maltego.ReligiousGroup>
 		<property displayName="Name" name="title" type="string" label="true" />
-	</ReligiousGroup>
+	</maltego.ReligiousGroup>
 	
-	<AS>
+	<maltego.AS>
 		<property displayName="AS Number" name="as.number" type="string" label="true" />
-	</AS>
+	</maltego.AS>
 	
-	<DNSName>
+	<maltego.DNSName>
 		<property displayName="DNS Name" name="fqdn" type="string" label="true" />
-	</DNSName>
+	</maltego.DNSName>
 	
-	<Domain>
+	<maltego.Domain>
 		<property displayName="DNS Name" name="fqdn" type="string" label="true" />
 		<property displayName="WHOIS Info" name="whois-info" type="string" />
-	</Domain>
+	</maltego.Domain>
 	
-	<IPv4Address>
+	<maltego.IPv4Address>
 		<property displayName="IP Address" name="ipv4-address" type="string" label="true" />
 		<property displayName="Internal" name="ipaddress.internal" type="boolean" />
-	</IPv4Address>
+	</maltego.IPv4Address>
 	
-	<MXRecord>
+	<maltego.MXRecord>
 		<property displayName="MX Record" name="fqdn" type="string" label="true" />
 		<property displayName="Priority" name="mxrecord.priority" type="int" />
-	</MXRecord>
+	</maltego.MXRecord>
 	
-	<NSRecord>
+	<maltego.NSRecord>
 		<property displayName="NS Record" name="fqdn" type="string" label="true" />
-	</NSRecord>
+	</maltego.NSRecord>
 	
-	<Netblock>
+	<maltego.Netblock>
 		<property displayName="IP Range" name="ipv4-range" type="string" label="true" />
-	</Netblock>
+	</maltego.Netblock>
 	
-	<URL>
+	<maltego.URL>
 		<property displayName="URL" name="url" type="url" label="true" />
 		<property displayName="Title" name="title" type="string" />
 		<property displayName="Short title" name="short-title" type="string" />
-	</URL>
+	</maltego.URL>
 	
-	<Website>
+	<maltego.Website>
 		<property displayName="Website" name="fqdn" type="string" label="true" />
 		<property displayName="Ports" name="ports" type="int[]" />
 		<property displayName="SSL Enabled" name="website.ssl-enabled" type="boolean" />
-	</Website>
+	</maltego.Website>
 	
-	<Airport>		
+	<maltego.Airport>		
 		<property displayName="Name" name="location.name" type="string" label="true" />
 		<property displayName="Street Address" name="streetaddress" type="string" />
 		<property displayName="Country Code" name="countrycode" type="string" />
@@ -175,9 +175,9 @@
 		<property displayName="Latitude" name="latitude" type="float" />
 		<property displayName="City" name="city" type="string" />
 		<property displayName="Country" name="country" type="string" />
-	</Airport>
+	</maltego.Airport>
 	
-	<Church>		
+	<maltego.Church>		
 		<property displayName="Name" name="location.name" type="string" label="true" />
 		<property displayName="Street Address" name="streetaddress" type="string" />
 		<property displayName="Country Code" name="countrycode" type="string" />
@@ -187,9 +187,9 @@
 		<property displayName="Latitude" name="latitude" type="float" />
 		<property displayName="City" name="city" type="string" />
 		<property displayName="Country" name="country" type="string" />
-	</Church>
+	</maltego.Church>
 	
-	<City>		
+	<maltego.City>		
 		<property displayName="Name" name="location.name" type="string" label="true" />
 		<property displayName="Street Address" name="streetaddress" type="string" />
 		<property displayName="Country Code" name="countrycode" type="string" />
@@ -199,9 +199,9 @@
 		<property displayName="Latitude" name="latitude" type="float" />
 		<property displayName="City" name="city" type="string" />
 		<property displayName="Country" name="country" type="string" />
-	</City>
+	</maltego.City>
 	
-	<Country>		
+	<maltego.Country>		
 		<property displayName="Name" name="location.name" type="string" label="true" />
 		<property displayName="Street Address" name="streetaddress" type="string" />
 		<property displayName="Country Code" name="countrycode" type="string" />
@@ -211,9 +211,9 @@
 		<property displayName="Latitude" name="latitude" type="float" />
 		<property displayName="City" name="city" type="string" />
 		<property displayName="Country" name="country" type="string" />
-	</Country>
+	</maltego.Country>
 	
-	<CrimeScene>		
+	<maltego.CrimeScene>		
 		<property displayName="Name" name="location.name" type="string" label="true" />
 		<property displayName="Street Address" name="streetaddress" type="string" />
 		<property displayName="Country Code" name="countrycode" type="string" />
@@ -223,9 +223,9 @@
 		<property displayName="Latitude" name="latitude" type="float" />
 		<property displayName="City" name="city" type="string" />
 		<property displayName="Country" name="country" type="string" />
-	</CrimeScene>
+	</maltego.CrimeScene>
 	
-	<Harbor>		
+	<maltego.Harbor>		
 		<property displayName="Name" name="location.name" type="string" label="true" />
 		<property displayName="Street Address" name="streetaddress" type="string" />
 		<property displayName="Country Code" name="countrycode" type="string" />
@@ -235,9 +235,9 @@
 		<property displayName="Latitude" name="latitude" type="float" />
 		<property displayName="City" name="city" type="string" />
 		<property displayName="Country" name="country" type="string" />
-	</Harbor>
+	</maltego.Harbor>
 	
-	<Home>		
+	<maltego.Home>		
 		<property displayName="Name" name="location.name" type="string" label="true" />
 		<property displayName="Street Address" name="streetaddress" type="string" />
 		<property displayName="Country Code" name="countrycode" type="string" />
@@ -247,9 +247,9 @@
 		<property displayName="Latitude" name="latitude" type="float" />
 		<property displayName="City" name="city" type="string" />
 		<property displayName="Country" name="country" type="string" />
-	</Home>
+	</maltego.Home>
 	
-	<Location>		
+	<maltego.Location>		
 		<property displayName="Name" name="location.name" type="string" label="true" />
 		<property displayName="Street Address" name="streetaddress" type="string" />
 		<property displayName="Country Code" name="countrycode" type="string" />
@@ -259,9 +259,9 @@
 		<property displayName="Latitude" name="latitude" type="float" />
 		<property displayName="City" name="city" type="string" />
 		<property displayName="Country" name="country" type="string" />
-	</Location>
+	</maltego.Location>
 	
-	<Office>		
+	<maltego.Office>		
 		<property displayName="Name" name="location.name" type="string" label="true" />
 		<property displayName="Street Address" name="streetaddress" type="string" />
 		<property displayName="Country Code" name="countrycode" type="string" />
@@ -271,9 +271,9 @@
 		<property displayName="Latitude" name="latitude" type="float" />
 		<property displayName="City" name="city" type="string" />
 		<property displayName="Country" name="country" type="string" />
-	</Office>
+	</maltego.Office>
 	
-	<Prison>		
+	<maltego.Prison>		
 		<property displayName="Name" name="location.name" type="string" label="true" />
 		<property displayName="Street Address" name="streetaddress" type="string" />
 		<property displayName="Country Code" name="countrycode" type="string" />
@@ -283,9 +283,9 @@
 		<property displayName="Latitude" name="latitude" type="float" />
 		<property displayName="City" name="city" type="string" />
 		<property displayName="Country" name="country" type="string" />
-	</Prison>
+	</maltego.Prison>
 	
-	<Region>		
+	<maltego.Region>		
 		<property displayName="Name" name="location.name" type="string" label="true" />
 		<property displayName="Street Address" name="streetaddress" type="string" />
 		<property displayName="Country Code" name="countrycode" type="string" />
@@ -295,9 +295,9 @@
 		<property displayName="Latitude" name="latitude" type="float" />
 		<property displayName="City" name="city" type="string" />
 		<property displayName="Country" name="country" type="string" />
-	</Region>
+	</maltego.Region>
 	
-	<Shop>		
+	<maltego.Shop>		
 		<property displayName="Name" name="location.name" type="string" label="true" />
 		<property displayName="Street Address" name="streetaddress" type="string" />
 		<property displayName="Country Code" name="countrycode" type="string" />
@@ -307,9 +307,9 @@
 		<property displayName="Latitude" name="latitude" type="float" />
 		<property displayName="City" name="city" type="string" />
 		<property displayName="Country" name="country" type="string" />
-	</Shop>
+	</maltego.Shop>
 
-	<TrainStation>		
+	<maltego.TrainStation>		
 		<property displayName="Name" name="location.name" type="string" label="true" />
 		<property displayName="Street Address" name="streetaddress" type="string" />
 		<property displayName="Country Code" name="countrycode" type="string" />
@@ -319,186 +319,186 @@
 		<property displayName="Latitude" name="latitude" type="float" />
 		<property displayName="City" name="city" type="string" />
 		<property displayName="Country" name="country" type="string" />
-	</TrainStation>
+	</maltego.TrainStation>
 	
-	<BusinessLeader>
+	<maltego.BusinessLeader>
 		<property displayName="Full name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
-	</BusinessLeader>
+	</maltego.BusinessLeader>
 	
-	<Businessman>
+	<maltego.Businessman>
 		<property displayName="Full name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
-	</Businessman>
+	</maltego.Businessman>
 	
-	<Child>
+	<maltego.Child>
 		<property displayName="Full name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
-	</Child>
+	</maltego.Child>
 	
-	<DrugDealer>
+	<maltego.DrugDealer>
 		<property displayName="Full name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
-	</DrugDealer>
+	</maltego.DrugDealer>
 	
-	<Female>
+	<maltego.Female>
 		<property displayName="Full name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
-	</Female>
+	</maltego.Female>
 	
-	<GangLeader>
+	<maltego.GangLeader>
 		<property displayName="Full name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
-	</GangLeader>
+	</maltego.GangLeader>
 	
-	<GangMember>
+	<maltego.GangMember>
 		<property displayName="Full name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
-	</GangMember>
+	</maltego.GangMember>
 	
-	<GovernmentOfficial>
+	<maltego.GovernmentOfficial>
 		<property displayName="Full name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
-	</GovernmentOfficial>
+	</maltego.GovernmentOfficial>
 	
-	<Judge>
+	<maltego.Judge>
 		<property displayName="Full name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
-	</Judge>
+	</maltego.Judge>
 	
-	<LawOfficer>
+	<maltego.LawOfficer>
 		<property displayName="Full name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
-	</LawOfficer>
+	</maltego.LawOfficer>
 	
-	<Lawyer>
+	<maltego.Lawyer>
 		<property displayName="Full name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
-	</Lawyer>
+	</maltego.Lawyer>
 	
-	<Male>
+	<maltego.Male>
 		<property displayName="Full name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
-	</Male>
+	</maltego.Male>
 	
-	<MilitaryOfficer>
+	<maltego.MilitaryOfficer>
 		<property displayName="Full name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
-	</MilitaryOfficer>
+	</maltego.MilitaryOfficer>
 	
-	<SexOffender>
+	<maltego.SexOffender>
 		<property displayName="Full name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
-	</SexOffender>
+	</maltego.SexOffender>
 	
-	<Terrorist>
+	<maltego.Terrorist>
 		<property displayName="Full name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
-	</Terrorist>
+	</maltego.Terrorist>
 	
-	<TerroristLeader>
+	<maltego.TerroristLeader>
 		<property displayName="Full name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
-	</TerroristLeader>
+	</maltego.TerroristLeader>
 	
-	<Unsub>
+	<maltego.Unsub>
 		<property displayName="Full name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
-	</Unsub>
+	</maltego.Unsub>
 	
-	<Alias>
+	<maltego.Alias>
 		<property displayName="Alias" name="alias" type="string" label="true" />
-	</Alias>
+	</maltego.Alias>
 	
-	<Document>
+	<maltego.Document>
 		<property displayName="Title" name="title" type="string" label="true" />
 		<property displayName="Meta-Data" name="document.meta-data" type="string" />
 		<property displayName="URL" name="url" type="url" />
-	</Document>
+	</maltego.Document>
 	
-	<EmailAddress>
+	<maltego.EmailAddress>
 		<property displayName="Email Address" name="email" type="string" label="true" />
-	</EmailAddress>
+	</maltego.EmailAddress>
 	
-	<Image>
+	<maltego.Image>
 		<property displayName="Description" name="description" type="string" label="true" />
 		<property displayName="URL" name="url" type="url" />
-	</Image>
+	</maltego.Image>
 	
-	<Person>
+	<maltego.Person>
 		<property displayName="Full Name" name="person.fullname" type="string" label="true" />
 		<property displayName="First Names" name="person.firstnames" type="string" />			
 		<property displayName="Surname" name="person.surname" type="string" />
-	</Person>
+	</maltego.Person>
 	
-	<PhoneNumber>
+	<maltego.PhoneNumber>
 		<property displayName="Phone Number" name="phonenumber" type="string" label="true" />
 		<property displayName="City Code" name="phonenumber.citycode" type="string" />
 		<property displayName="Country Code" name="phonenumber.countrycode" type="string" />
 		<property displayName="Area Code" name="phonenumber.areacode" type="string" />
 		<property displayName="Last Digits" name="phonenumber.lastnumbers" type="string" />
-	</PhoneNumber>
+	</maltego.PhoneNumber>
 	
-	<PhoneNumberMobile>
+	<maltego.PhoneNumberMobile>
 		<property displayName="Phone Number" name="phonenumber" type="string" label="true" />
 		<property displayName="City Code" name="phonenumber.citycode" type="string" />
 		<property displayName="Country Code" name="phonenumber.countrycode" type="string" />
 		<property displayName="Area Code" name="phonenumber.areacode" type="string" />
 		<property displayName="Last Digits" name="phonenumber.lastnumbers" type="string" />
-	</PhoneNumberMobile>
+	</maltego.PhoneNumberMobile>
 	
-	<PhoneNumberOffice>
+	<maltego.PhoneNumberOffice>
 		<property displayName="Phone Number" name="phonenumber" type="string" label="true" />
 		<property displayName="City Code" name="phonenumber.citycode" type="string" />
 		<property displayName="Country Code" name="phonenumber.countrycode" type="string" />
 		<property displayName="Area Code" name="phonenumber.areacode" type="string" />
 		<property displayName="Last Digits" name="phonenumber.lastnumbers" type="string" />
-	</PhoneNumberOffice>
+	</maltego.PhoneNumberOffice>
 	
-	<PhoneNumberResidential>
+	<maltego.PhoneNumberResidential>
 		<property displayName="Phone Number" name="phonenumber" type="string" label="true" />
 		<property displayName="City Code" name="phonenumber.citycode" type="string" />
 		<property displayName="Country Code" name="phonenumber.countrycode" type="string" />
 		<property displayName="Area Code" name="phonenumber.areacode" type="string" />
 		<property displayName="Last Digits" name="phonenumber.lastnumbers" type="string" />
-	</PhoneNumberResidential>
+	</maltego.PhoneNumberResidential>
 	
-	<Phrase>
+	<maltego.Phrase>
 		<property displayName="Text" name="text" type="string" label="true" />
-	</Phrase>
+	</maltego.Phrase>
 	
-	<affiliation.Facebook>
+	<maltego.affiliation.Facebook>
 		<property displayName="Name" name="person.name" type="string" label="true" />
 		<property displayName="Profile URL" name="affiliation.profile-url" type="string" />
 		<property displayName="Network" name="affiliation.network" type="string" />
 		<property displayName="UID" name="affiliation.uid" type="string" />
-	</affiliation.Facebook>
+	</maltego.affiliation.Facebook>
 	
-	<affiliation.LinkedIn>
+	<maltego.affiliation.LinkedIn>
 		<property displayName="Name" name="person.name" type="string" label="true" />
 		<property displayName="Profile URL" name="affiliation.profile-url" type="string" />
 		<property displayName="Network" name="affiliation.network" type="string" />
 		<property displayName="UID" name="affiliation.uid" type="string" />
-	</affiliation.LinkedIn>
+	</maltego.affiliation.LinkedIn>
 	
-	<affiliation.Twitter>
+	<maltego.affiliation.Twitter>
 		<property displayName="Name" name="person.name" type="string" label="true" />
 		<property displayName="Real Name" name="person.fullname" type="string" />
 		<property displayName="Twitter Number" name="twitter.number" type="int" />		
@@ -507,110 +507,110 @@
 		<property displayName="Friend Count" name="twitter.friendcount" type="int" />				
 		<property displayName="Network" name="affiliation.network" type="string" />
 		<property displayName="UID" name="affiliation.uid" type="string" />
-	</affiliation.Twitter>
+	</maltego.affiliation.Twitter>
 	
-	<BankAccount>
+	<maltego.BankAccount>
 		<property displayName="Account Number" name="bank.accnumber" type="string" label="true" />
 		<property displayName="Branch Code" name="bank.branch" type="string" />
 		<property displayName="Bank" name="bank.name" type="string" />
-	</BankAccount>
+	</maltego.BankAccount>
 	
-	<FlightNumber>
+	<maltego.FlightNumber>
 		<property displayName="Flight ID" name="flight.id" type="string" label="true" />
 		<property displayName="Airline" name="flight.airline" type="string" />
 		<property displayName="Date" name="flight.date" type="date" />
 		<property displayName="Flight Number" name="flight.number" type="string" />
-	</FlightNumber>
+	</maltego.FlightNumber>
 	
-	<IdentificationNumber>
+	<maltego.IdentificationNumber>
 		<property displayName="Number" name="identification.number" type="string" label="true" />
-	</IdentificationNumber>
+	</maltego.IdentificationNumber>
 	
-	<MacAddress>
+	<maltego.MacAddress>
 		<property displayName="MAC Address" name="macaddress" type="string" label="true" />
-	</MacAddress>
+	</maltego.MacAddress>
 	
-	<PassportNumber>
+	<maltego.PassportNumber>
 		<property displayName="Number" name="identification.number" type="string" label="true" />
-	</PassportNumber>
+	</maltego.PassportNumber>
 	
-	<VehicleRegistration>
+	<maltego.VehicleRegistration>
 		<property displayName="Registration Number" name="vehicle.registration" type="string" label="true" />
-	</VehicleRegistration>
+	</maltego.VehicleRegistration>
 	
-	<VinNumber>
+	<maltego.VinNumber>
 		<property displayName="VIN Number" name="vinnumber" type="string" label="true" />
-	</VinNumber>
+	</maltego.VinNumber>
 	
-	<Bike>
+	<maltego.Bike>
 		<property displayName="Name" name="transport.name" type="string" label="true" />
 		<property displayName="Make" name="transport.make" type="string" />
 		<property displayName="Model" name="transport.model" type="string" />
-	</Bike>
+	</maltego.Bike>
 	
-	<Boat>
+	<maltego.Boat>
 		<property displayName="Name" name="transport.name" type="string" label="true" />
 		<property displayName="Make" name="transport.make" type="string" />
 		<property displayName="Model" name="transport.model" type="string" />
-	</Boat>
+	</maltego.Boat>
 	
-	<Bus>
+	<maltego.Bus>
 		<property displayName="Name" name="transport.name" type="string" label="true" />
 		<property displayName="Make" name="transport.make" type="string" />
 		<property displayName="Model" name="transport.model" type="string" />
-	</Bus>
+	</maltego.Bus>
 	
-	<Car>
+	<maltego.Car>
 		<property displayName="Name" name="transport.name" type="string" label="true" />
 		<property displayName="Make" name="transport.make" type="string" />
 		<property displayName="Model" name="transport.model" type="string" />
-	</Car>
+	</maltego.Car>
 	
-	<Plane>
+	<maltego.Plane>
 		<property displayName="Name" name="transport.name" type="string" label="true" />
 		<property displayName="Make" name="transport.make" type="string" />
 		<property displayName="Model" name="transport.model" type="string" />
-	</Plane>
+	</maltego.Plane>
 	
-	<Train>
+	<maltego.Train>
 		<property displayName="Name" name="transport.name" type="string" label="true" />
 		<property displayName="Make" name="transport.make" type="string" />
 		<property displayName="Model" name="transport.model" type="string" />
-	</Train>
+	</maltego.Train>
 	
-	<Ammunition>
+	<maltego.Ammunition>
 		<property displayName="Type" name="weapon.type" type="string" label="true" />
-	</Ammunition>
+	</maltego.Ammunition>
 	
-	<BioWeapon>
+	<maltego.BioWeapon>
 		<property displayName="Type" name="weapon.type" type="string" label="true" />
-	</BioWeapon>
+	</maltego.BioWeapon>
 	
-	<Blade>
+	<maltego.Blade>
 		<property displayName="Type" name="weapon.type" type="string" label="true" />
-	</Blade>
+	</maltego.Blade>
 	
-	<ChemicalWeapon>
+	<maltego.ChemicalWeapon>
 		<property displayName="Type" name="weapon.type" type="string" label="true" />
-	</ChemicalWeapon>
+	</maltego.ChemicalWeapon>
 	
-	<Explosive>
+	<maltego.Explosive>
 		<property displayName="Type" name="weapon.type" type="string" label="true" />
-	</Explosive>
+	</maltego.Explosive>
 	
-	<Gun>
+	<maltego.Gun>
 		<property displayName="Type" name="weapon.type" type="string" label="true" />
-	</Gun>
+	</maltego.Gun>
 	
-	<IED>
+	<maltego.IED>
 		<property displayName="Type" name="weapon.type" type="string" label="true" />
-	</IED>
+	</maltego.IED>
 	
-	<Missile>
+	<maltego.Missile>
 		<property displayName="Type" name="weapon.type" type="string" label="true" />
-	</Missile>
+	</maltego.Missile>
 	
-	<NuclearWeapon>
+	<maltego.NuclearWeapon>
 		<property displayName="Type" name="weapon.type" type="string" label="true" />
-	</NuclearWeapon>
+	</maltego.NuclearWeapon>
 </MaltegoEntities>
