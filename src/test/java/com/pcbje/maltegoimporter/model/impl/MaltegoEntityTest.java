@@ -49,7 +49,7 @@ public class MaltegoEntityTest {
 		List<String> enums = new ArrayList<String>();
 				
 		for (MaltegoEntity entity : MaltegoEntity.values()) {
-			enums.add(entity.getName());
+			enums.add("maltego." + entity.getName());
 		}
 
 		for (int i = 0; i < list.getLength(); i++) {

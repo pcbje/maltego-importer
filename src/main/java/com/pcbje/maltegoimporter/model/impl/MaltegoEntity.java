@@ -1,70 +1,58 @@
 package com.pcbje.maltegoimporter.model.impl;
 
 public enum MaltegoEntity {
-	LINK_MANUAL("maltego.link.manual-link"), DESKTOP_COMPUTER(
-			"maltego.DesktopComputer"), DEVICE("maltego.Device"), MOBILE_COMPUTER(
-			"maltego.MobileComputer"), MOBILE_PHONE("maltego.MobilePhone"), SMART_PHONE(
-			"maltego.Smartphone"),
+	LINK_MANUAL("link.manual-link"), DESKTOP_COMPUTER("DesktopComputer"), DEVICE(
+			"Device"), MOBILE_COMPUTER("MobileComputer"), MOBILE_PHONE(
+			"MobilePhone"), SMART_PHONE("Smartphone"),
 
-	CONVERSATION_EMAIL("maltego.ConversationEmail"), CONVERSATION_PHONE(
-			"maltego.ConversationPhone"), INCIDENT("maltego.Incident"),
+	CONVERSATION_EMAIL("ConversationEmail"), CONVERSATION_PHONE(
+			"ConversationPhone"), INCIDENT("Incident"),
 
-	MEETING_BUSINESS("maltego.MeetingBusiness"), MEETING_SOCIAL(
-			"maltego.MeetingSocial"),
+	MEETING_BUSINESS("MeetingBusiness"), MEETING_SOCIAL("MeetingSocial"),
 
-	COMPANY("maltego.Company"), EDUCATION_INSTITUTION(
-			"maltego.EducationInstitution"), GANG("maltego.Gang"),
+	COMPANY("Company"), EDUCATION_INSTITUTION("EducationInstitution"), GANG(
+			"Gang"),
 
-	ONLINE_GROUP("maltego.OnlineGroup"), ORGANIZATION("maltego.Organization"),
+	ONLINE_GROUP("OnlineGroup"), ORGANIZATION("Organization"),
 
-	POLITICAL_MOVEMENT("maltego.PoliticalMovement"), RELIGIOUS_GROUP(
-			"maltego.ReligiousGroup"),
+	POLITICAL_MOVEMENT("PoliticalMovement"), RELIGIOUS_GROUP("ReligiousGroup"),
 
-	AS("maltego.AS"), DNS_NAME("maltego.DNSName"), DOMAIN("maltego.Domain"), IPv4_ADDRESS(
-			"maltego.IPv4Address"), MX_RECORD("maltego.MXRecord"), NS_RECORD(
-			"maltego.NSRecord"), NETBLOCK("maltego.Netblock"), URL(
-			"maltego.URL"), WEBSITE("maltego.Website"),
+	AS("AS"), DNS_NAME("DNSName"), DOMAIN("Domain"), IPv4_ADDRESS("IPv4Address"), MX_RECORD(
+			"MXRecord"), NS_RECORD("NSRecord"), NETBLOCK("Netblock"), URL("URL"), WEBSITE(
+			"Website"),
 
-	AIRPORT("maltego.Airport"), CHURCH("maltego.Church"), CITY("maltego.City"), COUNTRY(
-			"maltego.Country"), CRIME_SCENE("maltego.CrimeScene"), HARBOR(
-			"maltego.Harbor"), HOME("maltego.Home"), LOCATION(
-			"maltego.Location"), OFFICE("maltego.Office"), PRISON(
-			"maltego.Prison"), REGION("maltego.Region"), SHOP("maltego.Shop"), TRAIN_STATION(
-			"maltego.TrainStation"),
+	AIRPORT("Airport"), CHURCH("Church"), CITY("City"), COUNTRY("Country"), CRIME_SCENE(
+			"CrimeScene"), HARBOR("Harbor"), HOME("Home"), LOCATION("Location"), OFFICE(
+			"Office"), PRISON("Prison"), REGION("Region"), SHOP("Shop"), TRAIN_STATION(
+			"TrainStation"),
 
-	BUSINESS_LEADER("maltego.BusinessLeader"), BUSINESS_MAN(
-			"maltego.Businessman"), CHILD("maltego.Child"), DRUG_DEALER(
-			"maltego.DrugDealer"), FEMALE("maltego.Female"), GANG_LEADER(
-			"maltego.GangLeader"), GANG_MEMBER("maltego.GangMember"), GOVERNMENT_OFFICIAL(
-			"maltego.GovernmentOfficial"), JUDGE("maltego.Judge"), LAW_OFFICER(
-			"maltego.LawOfficer"), LAWYER("maltego.Lawyer"), MALE(
-			"maltego.Male"), MILITARY_OFFICER("maltego.MilitaryOfficer"), SEX_OFFENDER(
-			"maltego.SexOffender"), TERRORIST("maltego.Terrorist"), TERRORIST_LEADER(
-			"maltego.TerroristLeader"), UNSUB("maltego.Unsub"),
+	BUSINESS_LEADER("BusinessLeader"), BUSINESS_MAN("Businessman"), CHILD(
+			"Child"), DRUG_DEALER("DrugDealer"), FEMALE("Female"), GANG_LEADER(
+			"GangLeader"), GANG_MEMBER("GangMember"), GOVERNMENT_OFFICIAL(
+			"GovernmentOfficial"), JUDGE("Judge"), LAW_OFFICER("LawOfficer"), LAWYER(
+			"Lawyer"), MALE("Male"), MILITARY_OFFICER("MilitaryOfficer"), SEX_OFFENDER(
+			"SexOffender"), TERRORIST("Terrorist"), TERRORIST_LEADER(
+			"TerroristLeader"), UNSUB("Unsub"),
 
-	ALIAS("maltego.Alias"), DOCUMENT("maltego.Document"), EMAIL_ADDRESS(
-			"maltego.EmailAddress"), IMAGE("maltego.Image"), PERSON(
-			"maltego.Person"), PHONE_NUMBER("maltego.PhoneNumber"), PHONE_NUMBER_MOBILE(
-			"maltego.PhoneNumberMobile"), PHONE_NUMBER_OFFICE(
-			"maltego.PhoneNumberOffice"), PHONE_NUMBER_RESIDENTIAL(
-			"maltego.PhoneNumberResidential"), PHRASE("maltego.Phrase"),
+	ALIAS("Alias"), DOCUMENT("Document"), EMAIL_ADDRESS("EmailAddress"), IMAGE(
+			"Image"), PERSON("Person"), PHONE_NUMBER("PhoneNumber"), PHONE_NUMBER_MOBILE(
+			"PhoneNumberMobile"), PHONE_NUMBER_OFFICE("PhoneNumberOffice"), PHONE_NUMBER_RESIDENTIAL(
+			"PhoneNumberResidential"), PHRASE("Phrase"),
 
-	AFFILIATION_FACEBOOK("maltego.affiliation.Facebook"), AFFILIATION_LINKEDIN(
-			"maltego.affiliation.LinkedIn"), AFFILIATION_TWITTER(
-			"maltego.affiliation.Twitter"),
+	AFFILIATION_FACEBOOK("affiliation.Facebook"), AFFILIATION_LINKEDIN(
+			"affiliation.LinkedIn"), AFFILIATION_TWITTER("affiliation.Twitter"),
 
-	BANK_ACCOUNT("maltego.BankAccount"), FLIGHT_NUMBER("maltego.FlightNumber"), IDENTIFICATION_NUMBER(
-			"maltego.IdentificationNumber"), MAC_ADDRESS("maltego.MacAddress"), PASSPORT_NUMBER(
-			"maltego.PassportNumber"), VEHICLE_REGISTRATION(
-			"maltego.VehicleRegistration"), VIN_NUMBER("maltego.VinNumber"),
+	BANK_ACCOUNT("BankAccount"), FLIGHT_NUMBER("FlightNumber"), IDENTIFICATION_NUMBER(
+			"IdentificationNumber"), MAC_ADDRESS("MacAddress"), PASSPORT_NUMBER(
+			"PassportNumber"), VEHICLE_REGISTRATION("VehicleRegistration"), VIN_NUMBER(
+			"VinNumber"),
 
-	BIKE("maltego.Bike"), BOAT("maltego.Boat"), BUS("maltego.Bus"), CAR(
-			"maltego.Car"), PLANE("maltego.Plane"), TRAIN("maltego.Train"),
+	BIKE("Bike"), BOAT("Boat"), BUS("Bus"), CAR("Car"), PLANE("Plane"), TRAIN(
+			"Train"),
 
-	AMMUNITION("maltego.Ammunition"), BIO_WEAPON("maltego.BioWeapon"), BLADE(
-			"maltego.Blade"), CHEMICAL_WEAPON("maltego.ChemicalWeapon"), EXPLOSIVE(
-			"maltego.Explosive"), GUN("maltego.Gun"), IED("maltego.IED"), MISSILE(
-			"maltego.Missile"), NUCLEAR_WEAPON("maltego.NuclearWeapon");
+	AMMUNITION("Ammunition"), BIO_WEAPON("BioWeapon"), BLADE("Blade"), CHEMICAL_WEAPON(
+			"ChemicalWeapon"), EXPLOSIVE("Explosive"), GUN("Gun"), IED("IED"), MISSILE(
+			"Missile"), NUCLEAR_WEAPON("NuclearWeapon");
 
 	private String name;
 

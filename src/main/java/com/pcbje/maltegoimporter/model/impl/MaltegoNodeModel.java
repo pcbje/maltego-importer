@@ -21,10 +21,6 @@ public class MaltegoNodeModel implements NodeModel {
 	public MaltegoNodeModel(String type, String label) {
 		this.id = "n" + Integer.toString(ID_COUNTER++);
 		
-		if (!type.contains("maltego.")) {
-			type = "maltego." + type;
-		}
-		
 		this.type = type;
 
 		if (entityDefs == null) {

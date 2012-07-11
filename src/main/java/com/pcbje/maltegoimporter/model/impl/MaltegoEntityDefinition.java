@@ -38,6 +38,10 @@ public class MaltegoEntityDefinition {
 	}
 
 	public Map<String, PropertyModel> getProperties(String type) {
+		if (!type.startsWith("maltego.")) {
+			type = "maltego." + type;
+		}
+		
 		if (types.getElementsByTagName(type).getLength() == 0) {
 			throw new RuntimeException("I don't know the nodetype " + type
 					+ ".");
