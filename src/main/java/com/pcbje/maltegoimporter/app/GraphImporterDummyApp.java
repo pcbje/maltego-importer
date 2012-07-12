@@ -1,6 +1,8 @@
 package com.pcbje.maltegoimporter.app;
 
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -17,6 +19,8 @@ import org.w3c.dom.Element;
 import com.pcbje.maltegoimporter.receiver.impl.CSVFileReceiver;
 
 public class GraphImporterDummyApp {
+	static Logger logger = Logger.getLogger(GraphImporterDummyApp.class.getName());
+	
 	public static void main(String[] argv) {
 		File input = new File(argv[0]);
 
@@ -32,7 +36,7 @@ public class GraphImporterDummyApp {
 			Result dest = new StreamResult(new File(argv[1]));
 			aTransformer.transform(src, dest);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.log(Level.WARNING, e.getMessage(), e);
 		}
 	}
 }

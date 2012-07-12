@@ -13,6 +13,11 @@ import com.pcbje.maltegoimporter.model.EdgeModel;
 import com.pcbje.maltegoimporter.model.GraphModel;
 import com.pcbje.maltegoimporter.model.NodeModel;
 
+/**
+ * Model representing a Maltego graph in GraphML.
+ * 
+ * @author pcbje
+ */
 public class MaltegoGraphModel implements GraphModel {
 	private final String graphId;
 	private final String createdBy;

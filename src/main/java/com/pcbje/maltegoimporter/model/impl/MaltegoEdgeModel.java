@@ -9,6 +9,11 @@ import com.pcbje.maltegoimporter.model.EdgeModel;
 import com.pcbje.maltegoimporter.model.NodeModel;
 import com.pcbje.maltegoimporter.model.PropertyModel;
 
+/**
+ * Model representing a Maltego edge in GraphML.
+ * 
+ * @author pcbje
+ */
 public class MaltegoEdgeModel implements EdgeModel {
 	private final String id;
 	private final String type;

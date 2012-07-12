@@ -8,6 +8,11 @@ import org.w3c.dom.Element;
 import com.pcbje.maltegoimporter.model.NodeModel;
 import com.pcbje.maltegoimporter.model.PropertyModel;
 
+/**
+ * Model representing a Maltego node in GraphML.
+ * 
+ * @author pcbje
+ */
 public class MaltegoNodeModel implements NodeModel {
 	private String id;
 	
@@ -50,6 +55,9 @@ public class MaltegoNodeModel implements NodeModel {
 		return id;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public void setNodeId(String id) {
 		this.id = id;
 	}
@@ -61,6 +69,9 @@ public class MaltegoNodeModel implements NodeModel {
 		return type;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getNodeLabel() {
 		return label;
 	}

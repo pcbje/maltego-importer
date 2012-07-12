@@ -3,6 +3,11 @@ package com.pcbje.maltegoimporter.model;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Model representing an edge in GraphML.
+ * 
+ * @author pcbje
+ */
 public interface EdgeModel extends PropertyHolderModel {
 	/**
 	 * @return the Id of the edge.

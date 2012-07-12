@@ -3,6 +3,12 @@ package com.pcbje.maltegoimporter.model;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Model representing a property in GraphML. Properties are added to nodes and
+ * edges.
+ * 
+ * @author pcbje
+ */
 public interface PropertyModel {
 	/**
 	 * @return The name (Id) of the property.
@@ -39,8 +45,9 @@ public interface PropertyModel {
 	public boolean isLabelProperty();
 
 	/**
-	 * @param doc The document that will create the XML element.
-	 * @return The property data represented as GraphML. 
+	 * @param doc
+	 *            The document that will create the XML element.
+	 * @return The property data represented as GraphML.
 	 */
 	public Element getGraphML(Document doc);
 }

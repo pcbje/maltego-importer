@@ -2,6 +2,11 @@ package com.pcbje.maltegoimporter.model;
 
 import java.util.Map;
 
+/**
+ * Model representing an property holder (node and edge) in GraphML.
+ * 
+ * @author pcbje
+ */
 public interface PropertyHolderModel {
 	/**
 	 * @param propertyDisplayName

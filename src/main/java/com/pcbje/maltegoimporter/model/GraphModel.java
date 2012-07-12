@@ -3,6 +3,11 @@ package com.pcbje.maltegoimporter.model;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Model representing a graph in GraphML.
+ * 
+ * @author pcbje
+ */
 public interface GraphModel {
 	/**
 	 * Add a node to the graph.

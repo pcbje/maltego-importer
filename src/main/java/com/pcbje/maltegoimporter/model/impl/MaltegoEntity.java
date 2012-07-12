@@ -1,5 +1,10 @@
 package com.pcbje.maltegoimporter.model.impl;
 
+/**
+ * Enums representing the supported Maltego entity types for this parser.
+ * 
+ * @author pcbje
+ */
 public enum MaltegoEntity {
 	LINK_MANUAL("link.manual-link"), DESKTOP_COMPUTER("DesktopComputer"), DEVICE(
 			"Device"), MOBILE_COMPUTER("MobileComputer"), MOBILE_PHONE(

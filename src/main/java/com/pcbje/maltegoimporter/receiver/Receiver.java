@@ -3,6 +3,14 @@ package com.pcbje.maltegoimporter.receiver;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * Interface for receiving data from some other resource, such as CSV files or
+ * JSON over HTTP, etc.
+ * 
+ * @author pcbje
+ * 
+ * @param <T>
+ */
 public interface Receiver<T> {
 	/**
 	 * Create a GraphML object that can be copied into Maltego when converted to

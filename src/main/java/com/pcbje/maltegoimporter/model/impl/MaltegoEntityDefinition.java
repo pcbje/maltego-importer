@@ -15,6 +15,12 @@ import org.xml.sax.InputSource;
 
 import com.pcbje.maltegoimporter.model.PropertyModel;
 
+/**
+ * Class for retrievin the available properties for a given entity, i.e. node or
+ * edge.
+ * 
+ * @author pcbje
+ */
 public class MaltegoEntityDefinition {
 	private Logger logger = Logger.getLogger(MaltegoEntityDefinition.class
 			.getName());
