@@ -18,57 +18,66 @@ import com.pcbje.maltegoimporter.model.PropertyModel;
 /**
  * Class for retrievin the available properties for a given entity, i.e. node or
  * edge.
- * 
+ *
  * @author pcbje
  */
 public class MaltegoEntityDefinition {
-	private Logger logger = Logger.getLogger(MaltegoEntityDefinition.class
-			.getName());
 
-	private Document types;
+    private Logger logger = Logger.getLogger(MaltegoEntityDefinition.class
+            .getName());
+    private Document types;
 
-	public MaltegoEntityDefinition() {
-		DocumentBuilderFactory factory = null;
-		DocumentBuilder builder = null;
+    public MaltegoEntityDefinition() {
+        DocumentBuilderFactory factory = null;
+        DocumentBuilder builder = null;
 
-		try {
-			factory = DocumentBuilderFactory.newInstance();
-			builder = factory.newDocumentBuilder();
+        try {
+            factory = DocumentBuilderFactory.newInstance();
+            builder = factory.newDocumentBuilder();
 
-			types = builder.parse(new InputSource(this.getClass()
-					.getClassLoader().getResource("maltego-entities.xml")
-					.openStream()));
-		} catch (Exception e) {
-			logger.log(Level.WARNING, e.getMessage(), e);
-		}
-	}
+            types = builder.parse(new InputSource(this.getClass()
+                    .getClassLoader().getResource("maltego-entities.xml")
+                    .openStream()));
+        } catch (Exception e) {
+            logger.log(Level.WARNING, e.getMessage(), e);
+        }
+    }
 
-	public Map<String, PropertyModel> getProperties(String type) {
-		if (types.getElementsByTagName(type).getLength() == 0) {
-			throw new RuntimeException("I don't know the nodetype " + type
-					+ ".");
-		}
+    public Map<String, PropertyModel> getProperties(String type) {
+        
+        String qualifiedType;
+        
+        if (!type.startsWith("maltego.")) {
+            qualifiedType = "maltego." + type;
+        }
+        else {
+            qualifiedType = type;
+        }
+        
+        if (types.getElementsByTagName(qualifiedType).getLength() == 0) {
+            throw new RuntimeException("I don't know the nodetype " + qualifiedType
+                    + ".");
+        }
 
-		Element nodeType = (Element) types.getElementsByTagName(type).item(0);
+        Element nodeType = (Element) types.getElementsByTagName(qualifiedType).item(0);
 
-		NodeList propertyElements = nodeType.getElementsByTagName("property");
+        NodeList propertyElements = nodeType.getElementsByTagName("property");
 
-		Map<String, PropertyModel> properties = new HashMap<String, PropertyModel>();
+        Map<String, PropertyModel> properties = new HashMap<String, PropertyModel>();
 
-		Element property;
+        Element property;
 
-		for (int c = 0; c < propertyElements.getLength(); c++) {
-			property = (Element) propertyElements.item(c);
+        for (int c = 0; c < propertyElements.getLength(); c++) {
+            property = (Element) propertyElements.item(c);
 
-			properties.put(
-					property.getAttribute("displayName"),
-					new MaltegoPropertyModel(property.getAttribute("name"),
-							property.getAttribute("displayName"), property
-									.getAttribute("type"), property
-									.getAttribute("label").equals("true")));
-		}
+            properties.put(
+                    property.getAttribute("displayName"),
+                    new MaltegoPropertyModel(property.getAttribute("name"),
+                    property.getAttribute("displayName"), property
+                    .getAttribute("type"), property
+                    .getAttribute("label").equals("true")));
+        }
 
-		return properties;
-	}
-
+        return properties;
+    }
 }
