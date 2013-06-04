@@ -1,7 +1,16 @@
 Maltego and Casefile supports copying and pasting of GraphML. The aim of this project to ease the task
 of generating valid GraphML with Maltego's special needs from various dataformats.
 
-#### Input format: CSV
+#### Input format: Header based CSV
+
+<pre>
+GangMember, Male, Female, LawOfficer, GangMember, Male, Female, LawOfficer
+Jon Doe,Some random guy,,,,,,,
+,,Some lady,,,Some random guy,,Policeman
+,,,Policeman,Jon Doe,Some random guy,,
+</pre>
+
+#### Input format: Value based CSV
 
 <pre>
 GangMember, Jon Doe,   Male,       Some random guy, Shoots
