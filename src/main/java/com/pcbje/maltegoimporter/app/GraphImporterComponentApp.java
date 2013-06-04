@@ -416,8 +416,9 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                         min = Integer.MAX_VALUE;
 
                         boolean found = false;
+                        
                         for (String me : entities.keySet()) {
-                            if (me.contains(col)) {
+                            if (me.contains(col) || col.contains(me)) {                                
                                 ed = editDistance(me, col);
 
                                 if (ed < min) {
