@@ -366,8 +366,16 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
 
             try {
                 reader = new BufferedReader(new FileReader(jTextField1.getText()));
-
-                header = reader.readLine().split(DELIMETER);
+                String headerline = reader.readLine();
+                
+                if (headerline.contains(";")) {
+                    DELIMETER = ";";
+                }
+                else if (headerline.contains(",")) {
+                    DELIMETER = ",";
+                }
+                
+                header = headerline.split(DELIMETER);
 
                 types = new HashMap<Integer, MaltegoEntity>();
 
