@@ -17,6 +17,10 @@
 	<maltego.Device>
 		<property displayName="Device" name="device" type="string" label="true" />
 	</maltego.Device>
+        
+        <maltego.Unknown>
+		<property displayName="Unknown" name="unknown" type="string" label="true" />
+	</maltego.Unknown>
 	
 	<maltego.MobileComputer>
 		<property displayName="Device" name="device" type="string" label="true" />

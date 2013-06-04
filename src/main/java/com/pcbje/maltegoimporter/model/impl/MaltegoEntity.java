@@ -57,7 +57,9 @@ public enum MaltegoEntity {
 
 	AMMUNITION("Ammunition"), BIO_WEAPON("BioWeapon"), BLADE("Blade"), CHEMICAL_WEAPON(
 			"ChemicalWeapon"), EXPLOSIVE("Explosive"), GUN("Gun"), IED("IED"), MISSILE(
-			"Missile"), NUCLEAR_WEAPON("NuclearWeapon");
+			"Missile"), NUCLEAR_WEAPON("NuclearWeapon"),
+                        
+        UNKNOWN("Unknown");
 
 	private String name;
 
@@ -68,4 +70,9 @@ public enum MaltegoEntity {
 	public String getName() {
 		return name;
 	}
+        
+        @Override
+        public String toString() {
+            return name;
+        }
 }
