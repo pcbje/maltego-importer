@@ -78,6 +78,10 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                 Logger.getLogger(GraphImporterComponentApp.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
+        boolean headerAsLabel = !prop.containsKey("header-as-label") || prop.get("header-as-label").equals("true");
+        
+        jCheckBox1.setSelected(headerAsLabel);
 
         JComboBox entities = new JComboBox();
 
@@ -139,6 +143,7 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -218,6 +223,9 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
             }
         });
 
+        jCheckBox1.setSelected(true);
+        jCheckBox1.setText("Use column header as edge label");
+
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
 
@@ -292,21 +300,23 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
                                 .add(jLabel3)
-                                .add(0, 0, Short.MAX_VALUE))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                .add(jCheckBox1))
                             .add(layout.createSequentialGroup()
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(jLabel1)
                                     .add(jLabel2))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(layout.createSequentialGroup()
                                         .add(jRadioButton2)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                         .add(jRadioButton1))
-                                    .add(jTextField1))
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jButton1)
-                                .add(0, 0, Short.MAX_VALUE))))
+                                    .add(layout.createSequentialGroup()
+                                        .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 245, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(jButton1)))))
+                        .add(0, 0, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .add(12, 12, 12)
                         .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE))
@@ -331,9 +341,11 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                     .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jButton1))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jLabel3)
-                .add(13, 13, 13)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel3)
+                    .add(jCheckBox1))
+                .add(10, 10, 10)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jButton4)
@@ -389,6 +401,8 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                 int ed;
 
                 for (int i = 0; i < header.length; i++) {
+                    header[i] = header[i].trim();
+                    
                     col = header[i].toLowerCase().replaceAll("[^a-z]", "");
 
                     if (prop.containsKey(header[i])) {
@@ -503,10 +517,12 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         jTable1.setEnabled(true);
+        jCheckBox1.setEnabled(true);
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         jTable1.setEnabled(false);
+        jCheckBox1.setEnabled(false);
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -523,13 +539,30 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                 String[] parts;
                 
                 while ((line = reader.readLine()) != null) {
-                    parts = line.replaceAll(",", "").split(DELIMETER);
+                    if (DELIMETER.equals(";")) {
+                        line = line.replaceAll(",", "");
+                    }
                     
-                    for (int i=1; i<parts.length; i++) {
-                        if (parts[i].trim().length() > 0) {
-                            writer.write(String.format("%s,%s,%s,%s,%s\n", types.get(0).getName(), parts[0], types.get(i).getName(), parts[i], header[i]));
+                    parts = line.split(DELIMETER);
+                    
+                    int start = 0;
+                    
+                    for (int j=0; j<parts.length; j++) {
+                        if (parts[j].trim().length() > 0) {
+                            start = j;
+                            break;
                         }
                     }
+                    
+                    for (int i=start; i<parts.length; i++) {
+                        if (parts[i].trim().length() > 0) {
+                            writer.write(String.format("%s,%s,%s,%s,%s\n", types.get(start).getName(), parts[start], types.get(i).getName(), parts[i], jCheckBox1.isSelected() ? header[i] : ""));
+                        }
+                    }
+                    
+                    prop.put("header-as-label", jCheckBox1.isSelected() ? "true" : "false");
+                    
+                    prop.store(new FileOutputStream(PROP_FILE), null);
                 } 
                 
                 writer.close();
@@ -622,6 +655,7 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

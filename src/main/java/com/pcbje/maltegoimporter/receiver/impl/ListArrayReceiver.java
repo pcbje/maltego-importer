@@ -37,16 +37,22 @@ public class ListArrayReceiver implements Receiver<List<String[]>> {
 		List<EdgeModel> edges = new ArrayList<EdgeModel>();
 
 		for (String[] record : data) {
-			if (record.length != 5) {
+			if (record.length != 5 && record.length != 4) {
 				throw new RuntimeException("Invalid data format.");
 			}
+                        
+                        String label = "";
+                        
+                        if (record.length == 5) {
+                            label = record[EDGE_LABEL];
+                        }
 
 			NodeModel source = new MaltegoNodeModel(record[NODE_A_TYPE],
 					record[NODE_A_VALUE]);
 			NodeModel target = new MaltegoNodeModel(record[NODE_B_TYPE],
 					record[NODE_B_VALUE]);
 			EdgeModel edge = new MaltegoEdgeModel(source, target,
-					record[EDGE_LABEL]);
+					label);
 
 			nodes.add(source);
 			nodes.add(target);
