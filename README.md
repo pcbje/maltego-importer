@@ -1,7 +1,7 @@
 Maltego and Casefile supports copying and pasting of GraphML. The aim of this project to ease the task
 of generating valid GraphML with Maltego's special needs from various dataformats.
 
-Download the file maltego-importer.jar if you don't want to build the source yourself.
+Download the file maltego-importer.jar if you don't want to build the source yourself. You'll need to have Java 6 or higher installed.
 
 #### Input format: Header based CSV
 
