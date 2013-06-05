@@ -19,8 +19,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,7 +55,9 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
     private final static String PROP_FILE = "maltego-importer.properties";
     private static String DELIMETER = ";";
     private DefaultTableModel tmodel = new DefaultTableModel();
+    private DefaultTableModel rmodel = new DefaultTableModel();
     private Map<Integer, MaltegoEntity> types;
+    private Map<String, Integer> typesc;
     private Properties prop;
     private BufferedReader reader;
     private String[] header;
@@ -69,6 +73,11 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
         tmodel.addColumn("Column");
         tmodel.addColumn("Entity type");
 
+        jTable2.setModel(rmodel);
+        rmodel.addColumn("Source column");
+        rmodel.addColumn("Target column");
+        rmodel.addColumn("Label");
+
         prop = new Properties();
 
         if (new File(PROP_FILE).exists()) {
@@ -78,10 +87,6 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                 Logger.getLogger(GraphImporterComponentApp.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        boolean headerAsLabel = !prop.containsKey("header-as-label") || prop.get("header-as-label").equals("true");
-        
-        jCheckBox1.setSelected(headerAsLabel);
 
         JComboBox entities = new JComboBox();
 
@@ -101,6 +106,8 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                     } catch (IOException ex) {
                         Logger.getLogger(GraphImporterComponentApp.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    
+                    getMappings();
                 }
             }
         });
@@ -143,7 +150,10 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -223,8 +233,25 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
             }
         });
 
-        jCheckBox1.setSelected(true);
-        jCheckBox1.setText("Use column header as edge label");
+        jLabel4.setText("Relations");
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Souorce column", "Target column", "Label"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        jButton3.setText("Add relation");
+        jButton3.setEnabled(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -298,10 +325,7 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                     .add(layout.createSequentialGroup()
                         .add(14, 14, 14)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(layout.createSequentialGroup()
-                                .add(jLabel3)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                .add(jCheckBox1))
+                            .add(jLabel3)
                             .add(layout.createSequentialGroup()
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(jLabel1)
@@ -316,16 +340,27 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                                         .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 245, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                         .add(jButton1)))))
-                        .add(0, 0, Short.MAX_VALUE))
-                    .add(layout.createSequentialGroup()
-                        .add(12, 12, 12)
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE))
+                        .add(0, 271, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .addContainerGap()
                         .add(jButton4)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(jButton2)))
+                        .add(jButton2))
+                    .add(layout.createSequentialGroup()
+                        .add(12, 12, 12)
+                        .add(jScrollPane1))
+                    .add(layout.createSequentialGroup()
+                        .add(12, 12, 12)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jScrollPane2)
+                            .add(layout.createSequentialGroup()
+                                .add(jLabel4)
+                                .add(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jButton3)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -341,12 +376,16 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                     .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jButton1))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel3)
-                    .add(jCheckBox1))
-                .add(10, 10, 10)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                .add(jLabel3)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 159, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jLabel4)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jButton3)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jButton4)
                     .add(jButton2))
@@ -371,25 +410,57 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void getMappings() {
+        jButton3.setEnabled(true);
+
         if (jRadioButton2.isSelected()) {
             while (tmodel.getRowCount() > 0) {
                 tmodel.removeRow(0);
+            }
+            
+            while (rmodel.getRowCount() > 0) {
+                rmodel.removeRow(0);
             }
 
             try {
                 reader = new BufferedReader(new FileReader(jTextField1.getText()));
                 String headerline = reader.readLine();
-                
+
                 if (headerline.contains(";")) {
                     DELIMETER = ";";
-                }
-                else if (headerline.contains(",")) {
+                } else if (headerline.contains(",")) {
                     DELIMETER = ",";
                 }
-                
+
                 header = headerline.split(DELIMETER);
 
+                Set<String> headerc = new HashSet<String>();
+
+                for (String h : header) {
+                    headerc.add(h);
+                }
+
+                String src;
+                String[] rel;
+                String[] label;
+
+                for (String key : prop.stringPropertyNames()) {
+                    if (key.startsWith("relation.")) {
+                        src = key.substring("relation.".length(), key.length());
+
+                        if (headerc.contains(src)) {
+                            rel = prop.getProperty(key).split(",");
+
+                            for (String r : rel) {
+                                label = r.split(":");
+
+                                rmodel.addRow(new Object[]{src, label[0], label.length == 2 ? label[1] : ""});
+                            }
+                        }
+                    }
+                }
+
                 types = new HashMap<Integer, MaltegoEntity>();
+                typesc = new HashMap<String, Integer>();
 
                 Map<String, MaltegoEntity> entities = new HashMap<String, MaltegoEntity>();
 
@@ -400,9 +471,13 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                 String col;
                 int ed;
 
+                JComboBox columns = new JComboBox();
+
                 for (int i = 0; i < header.length; i++) {
                     header[i] = header[i].trim();
                     
+                    typesc.put(header[i], i);
+
                     col = header[i].toLowerCase().replaceAll("[^a-z]", "");
 
                     if (prop.containsKey(header[i])) {
@@ -430,9 +505,9 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                         min = Integer.MAX_VALUE;
 
                         boolean found = false;
-                        
+
                         for (String me : entities.keySet()) {
-                            if (me.contains(col) || col.contains(me)) {                                
+                            if (me.contains(col) || col.contains(me)) {
                                 ed = editDistance(me, col);
 
                                 if (ed < min) {
@@ -451,9 +526,20 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
 
 
                     tmodel.addRow(new Object[]{header[i], types.get(i)});
+                    
+                    columns.addItem(header[i]);
                 }
 
+                DefaultCellEditor columnEditor = new DefaultCellEditor(columns);
 
+
+                TableColumn typeSourceCol = jTable2.getColumnModel().getColumn(0);
+                TableColumn typeTargetCol = jTable2.getColumnModel().getColumn(1);
+
+                typeSourceCol.setCellEditor(columnEditor);
+                typeTargetCol.setCellEditor(columnEditor);
+
+                reader.close();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
@@ -517,12 +603,10 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         jTable1.setEnabled(true);
-        jCheckBox1.setEnabled(true);
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         jTable1.setEnabled(false);
-        jCheckBox1.setEnabled(false);
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -531,40 +615,80 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
 
         if (jRadioButton2.isSelected()) {
             try {
+                reader = new BufferedReader(new FileReader(jTextField1.getText()));
+                
+                reader.readLine();
+                
+                Map<String, Set<String>> relations = new HashMap<String, Set<String>>();
+
+                String source;
+                String rel;
+
+                for (int i = 0; i < rmodel.getRowCount(); i++) {
+                    source = (String) rmodel.getValueAt(i, 0);
+                    if (!relations.containsKey(source)) {
+                        relations.put(source, new HashSet<String>());
+                    }
+
+                    rel = (String) rmodel.getValueAt(i, 1);
+
+                    if ((String) rmodel.getValueAt(i, 2) != null) {
+                        rel += ":" + (String) rmodel.getValueAt(i, 2);
+                    }
+
+                    relations.get(source).add(rel);
+                }
+
+                StringBuilder targets;
+
+                for (String col : relations.keySet()) {
+                    targets = new StringBuilder();
+                    boolean first = true;
+                    for (String target : relations.get(col)) {
+                        if (!first) {
+                            targets.append(",");
+                        }
+
+                        targets.append(target);
+
+                        first = false;
+                    }
+                    prop.put("relation." + col, targets.toString());
+                }
+
+                prop.store(new FileOutputStream(PROP_FILE), null);
+
                 input = File.createTempFile("maltego-importer", null);
 
                 BufferedWriter writer = new BufferedWriter(new FileWriter(input));
-                
+
                 String line;
                 String[] parts;
-                
+
                 while ((line = reader.readLine()) != null) {
                     if (DELIMETER.equals(";")) {
                         line = line.replaceAll(",", "");
                     }
-                    
+
                     parts = line.split(DELIMETER);
                     
-                    int start = 0;
-                    
-                    for (int j=0; j<parts.length; j++) {
-                        if (parts[j].trim().length() > 0) {
-                            start = j;
-                            break;
+                    String src, dst, label;
+                    MaltegoEntity srcType, dstType;
+
+                    for (int i=0; i<rmodel.getRowCount(); i++) {
+                        src = ((String) rmodel.getValueAt(i, 0)).trim();
+                        dst = ((String) rmodel.getValueAt(i, 1)).trim();
+                        label = (String) rmodel.getValueAt(i, 2);
+             
+                        if (parts[typesc.get(src)].length() > 0 && parts[typesc.get(dst)].length() > 0) {                        
+                            srcType = types.get(typesc.get(src));
+                            dstType = types.get(typesc.get(dst));
+
+                            writer.write(String.format("%s,%s,%s,%s,%s\n", srcType.getName(), parts[typesc.get(src)], dstType.getName(), parts[typesc.get(dst)], label));
                         }
-                    }
-                    
-                    for (int i=start; i<parts.length; i++) {
-                        if (parts[i].trim().length() > 0) {
-                            writer.write(String.format("%s,%s,%s,%s,%s\n", types.get(start).getName(), parts[start], types.get(i).getName(), parts[i], jCheckBox1.isSelected() ? header[i] : ""));
-                        }
-                    }
-                    
-                    prop.put("header-as-label", jCheckBox1.isSelected() ? "true" : "false");
-                    
-                    prop.store(new FileOutputStream(PROP_FILE), null);
-                } 
-                
+                    }                            
+                }
+
                 writer.close();
 
             } catch (IOException ex) {
@@ -606,6 +730,10 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
 
         getMappings();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        rmodel.addRow(new Object[]{header[0], header[0]});
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -654,15 +782,18 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
