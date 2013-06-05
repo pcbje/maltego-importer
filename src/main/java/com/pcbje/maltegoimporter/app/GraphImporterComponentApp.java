@@ -159,14 +159,14 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                     line = copy;
                 }
 
-                line = line.replaceAll(DELIMETER, " " + DELIMETER);
+                line = line.replaceAll(DELIMETER, DELIMETER + " ");
                 line = line.replaceAll("\"", "");
 
                 parts = line.split(DELIMETER);
 
                 String src, dst, label;
                 MaltegoEntity srcType, dstType;
-
+                
                 for (int i = 0; i < rmodel.getRowCount(); i++) {
                     src = ((String) rmodel.getValueAt(i, 0)).trim();
                     dst = ((String) rmodel.getValueAt(i, 1)).trim();
