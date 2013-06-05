@@ -271,13 +271,19 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
     }
 
     private void chooseHeaderBasedCSV() {
-        jTable1.setEnabled(true);
+        jScrollPane1.setEnabled(true);
+        jScrollPane2.setEnabled(true);
+        jTable1.setEnabled(true);        
+        jTable2.setEnabled(true);
         jButton3.setEnabled(true);
         jButton5.setEnabled(true);
     }
 
     private void chooseValueBasedCSV() {
+        jScrollPane1.setEnabled(false);
+        jScrollPane2.setEnabled(false);
         jTable1.setEnabled(false);
+        jTable2.setEnabled(false);
         jButton3.setEnabled(false);
         jButton5.setEnabled(false);
     }
@@ -314,7 +320,7 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
 
             out.close();
 
-            JOptionPane.showMessageDialog(null, "Transform completed. Now open " + jTextField2.getText() + " in Maltego/CaseFile.");
+            JOptionPane.showMessageDialog(null, "Transform completed. Open " + jTextField2.getText() + " in Maltego");
         } catch (Exception e) {
             logger.log(Level.WARNING, e.getMessage(), e);
         }
