@@ -13,7 +13,10 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -32,6 +35,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.DateFormatter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Result;
@@ -59,6 +63,7 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
     private Properties prop;
     private String[] header;
     private boolean initial;
+    private static final DateFormat format = new SimpleDateFormat("yyyy.MM.dd-HH:mm:ss");
 
     /**
      * Creates new form GraphImporterComponentApp
@@ -310,8 +315,12 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
             if (!new File(jTextField2.getText()).getParentFile().exists()) {
                 new File(jTextField2.getText()).getParentFile().mkdir();
             }
+            
+            String timestamp = format.format(new Date());
+            
+            String outputFile = jTextField2.getText().replace(".mtgx", "-" + timestamp + ".mtgx");
 
-            ZipOutputStream out = new ZipOutputStream(new FileOutputStream(jTextField2.getText()));
+            ZipOutputStream out = new ZipOutputStream(new FileOutputStream(outputFile));
             out.putNextEntry(new ZipEntry("Graphs/Graph1.graphml"));
 
             Result dest = new StreamResult(out);
@@ -320,7 +329,7 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
 
             out.close();
 
-            JOptionPane.showMessageDialog(null, "Transform completed. Open " + jTextField2.getText() + " in Maltego");
+            JOptionPane.showMessageDialog(null, "Transform completed. Open " + outputFile + " in Maltego");
         } catch (Exception e) {
             logger.log(Level.WARNING, e.getMessage(), e);
         }
