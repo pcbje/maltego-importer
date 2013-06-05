@@ -6,10 +6,8 @@ Download the file maltego-importer.jar if you don't want to build the source you
 #### Input format: Header based CSV
 
 <pre>
-GangMember, Male, Female, LawOfficer, GangMember, Male, Female, LawOfficer
-Jon Doe,Some random guy,,,,,,,
-,,Some lady,,,Some random guy,,Policeman
-,,,Policeman,Jon Doe,Some random guy,,
+GangMember, Male, Female, LawOfficer
+Jon Doe,Some random guy,Some lady,Policeman
 </pre>
 
 #### Input format: Value based CSV
