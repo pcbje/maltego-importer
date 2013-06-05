@@ -574,7 +574,7 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                 reader.close();
             } catch (Exception ex) {
                 Logger.getLogger(GraphImporterComponentApp.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(null, ex.getMessage());                
+                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         }
 
@@ -774,23 +774,23 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
 
             Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
             clpbrd.setContents(new StringSelection(new String(baos.toByteArray())), null);
-            
+
             if (jCheckBox1.isSelected()) {
                 JFrame dbg = new JFrame();
                 dbg.setTitle("Debug");
                 dbg.setSize(new Dimension(400, 300));
                 dbg.setLocationRelativeTo(null);
-                
+
                 JScrollPane sp = new JScrollPane();
-                
+
                 JTextArea ta = new JTextArea();
-                
+
                 ta.setText(new String(baos.toByteArray()));
-                                
+
                 sp.getViewport().add(ta);
-                
+
                 dbg.getContentPane().add(sp);
-                
+
                 dbg.setVisible(true);
             }
 
@@ -803,6 +803,10 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new File(PROP_FILE).delete();
+
+        while (rmodel.getRowCount() > 0) {
+            rmodel.removeRow(0);
+        }
 
         prop = new Properties();
 
