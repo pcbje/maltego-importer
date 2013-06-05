@@ -18,6 +18,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -432,13 +433,15 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                 }
 
                 header = headerline.split(DELIMETER);
-
-                Set<String> headerc = new HashSet<String>();
-
-                for (String h : header) {
-                    headerc.add(h);
+                
+                for (int i=0; i<header.length; i++) {
+                    header[i] = header[i].trim();
                 }
 
+                Set<String> headerc = new HashSet<String>();
+                
+                headerc.addAll(Arrays.asList(header));
+                
                 String src;
                 String[] rel;
                 String[] label;
@@ -446,11 +449,11 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                 for (String key : prop.stringPropertyNames()) {
                     if (key.startsWith("relation.")) {
                         src = key.substring("relation.".length(), key.length());
-
+                        
                         if (headerc.contains(src)) {
                             rel = prop.getProperty(key).split(",");
-
-                            for (String r : rel) {
+                            
+                            for (String r : rel) {                                
                                 label = r.split(":");
 
                                 rmodel.addRow(new Object[]{src, label[0], label.length == 2 ? label[1] : ""});
@@ -669,6 +672,8 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                     if (DELIMETER.equals(";")) {
                         line = line.replaceAll(",", "");
                     }
+                   
+                    line = line.replaceAll(DELIMETER, DELIMETER + " ");
 
                     parts = line.split(DELIMETER);
                     
@@ -680,7 +685,7 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                         dst = ((String) rmodel.getValueAt(i, 1)).trim();
                         label = (String) rmodel.getValueAt(i, 2);
              
-                        if (parts[typesc.get(src)].length() > 0 && parts[typesc.get(dst)].length() > 0) {                        
+                        if (parts[typesc.get(src)].trim().length() > 0 && parts[typesc.get(dst)].trim().length() > 0) {                        
                             srcType = types.get(typesc.get(src));
                             dstType = types.get(typesc.get(dst));
 
