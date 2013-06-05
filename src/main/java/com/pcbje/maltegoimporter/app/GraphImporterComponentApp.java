@@ -62,12 +62,15 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
     private Properties prop;
     private BufferedReader reader;
     private String[] header;
+    private boolean initial;
 
     /**
      * Creates new form GraphImporterComponentApp
      */
     public GraphImporterComponentApp() {
         initComponents();
+
+        initial = true;
 
         jTable1.setModel(tmodel);
 
@@ -95,21 +98,7 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
 
         entities.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (types != null && jTable1.getSelectedRow() >= 0) {
-                    MaltegoEntity me = (MaltegoEntity) ((JComboBox) e.getSource()).getSelectedItem();
-
-                    types.put(((JComboBox) e.getSource()).getSelectedIndex(), me);
-
-                    prop.put(tmodel.getValueAt(jTable1.getSelectedRow(), 0), me.getName());
-
-                    try {
-                        prop.store(new FileOutputStream(PROP_FILE), null);
-                    } catch (IOException ex) {
-                        Logger.getLogger(GraphImporterComponentApp.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    
-                    getMappings();
-                }
+                updateEntityType(e);
             }
         });
 
@@ -424,6 +413,24 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void updateEntityType(ActionEvent e) {
+        if (types != null && jTable1.getSelectedRow() >= 0) {
+            MaltegoEntity me = (MaltegoEntity) ((JComboBox) e.getSource()).getSelectedItem();
+
+            types.put(((JComboBox) e.getSource()).getSelectedIndex(), me);
+
+            prop.put(tmodel.getValueAt(jTable1.getSelectedRow(), 0), me.getName());
+
+            try {
+                prop.store(new FileOutputStream(PROP_FILE), null);
+            } catch (IOException ex) {
+                Logger.getLogger(GraphImporterComponentApp.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            getMappings();
+        }
+    }
+
     private void getMappings() {
         jButton3.setEnabled(true);
         jButton5.setEnabled(true);
@@ -431,10 +438,6 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
         if (jRadioButton2.isSelected()) {
             while (tmodel.getRowCount() > 0) {
                 tmodel.removeRow(0);
-            }
-            
-            while (rmodel.getRowCount() > 0) {
-                rmodel.removeRow(0);
             }
 
             try {
@@ -448,30 +451,32 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                 }
 
                 header = headerline.split(DELIMETER);
-                
-                for (int i=0; i<header.length; i++) {
+
+                for (int i = 0; i < header.length; i++) {
                     header[i] = header[i].trim();
                 }
 
                 Set<String> headerc = new HashSet<String>();
-                
+
                 headerc.addAll(Arrays.asList(header));
-                
+
                 String src;
                 String[] rel;
                 String[] label;
 
-                for (String key : prop.stringPropertyNames()) {
-                    if (key.startsWith("relation.")) {
-                        src = key.substring("relation.".length(), key.length());
-                        
-                        if (headerc.contains(src)) {
-                            rel = prop.getProperty(key).split(",");
-                            
-                            for (String r : rel) {                                
-                                label = r.split(":");
+                if (initial) {
+                    for (String key : prop.stringPropertyNames()) {
+                        if (key.startsWith("relation.")) {
+                            src = key.substring("relation.".length(), key.length());
 
-                                rmodel.addRow(new Object[]{src, label[0], label.length == 2 ? label[1] : ""});
+                            if (headerc.contains(src)) {
+                                rel = prop.getProperty(key).split(",");
+
+                                for (String r : rel) {
+                                    label = r.split(":");
+
+                                    rmodel.addRow(new Object[]{src, label[0], label.length == 2 ? label[1] : ""});
+                                }
                             }
                         }
                     }
@@ -493,8 +498,10 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
 
                 for (int i = 0; i < header.length; i++) {
                     header[i] = header[i].trim();
-                    
+
                     typesc.put(header[i], i);
+
+                    columns.addItem(header[i]);
 
                     col = header[i].toLowerCase().replaceAll("[^a-z]", "");
 
@@ -542,10 +549,7 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                         }
                     }
 
-
                     tmodel.addRow(new Object[]{header[i], types.get(i)});
-                    
-                    columns.addItem(header[i]);
                 }
 
                 DefaultCellEditor columnEditor = new DefaultCellEditor(columns);
@@ -562,6 +566,8 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         }
+
+        initial = false;
     }
 
     private class ComboBoxRenderer extends JLabel
@@ -638,9 +644,9 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
         if (jRadioButton2.isSelected()) {
             try {
                 reader = new BufferedReader(new FileReader(jTextField1.getText()));
-                
+
                 reader.readLine();
-                
+
                 Map<String, Set<String>> relations = new HashMap<String, Set<String>>();
 
                 String source;
@@ -690,27 +696,44 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                 while ((line = reader.readLine()) != null) {
                     if (DELIMETER.equals(";")) {
                         line = line.replaceAll(",", "");
+                    } else if (DELIMETER.equals(",")) {
+                        String copy = "";
+                        boolean inQuotes = false;
+
+                        for (int i = 0; i < line.length(); ++i) {
+                            if (line.charAt(i) == '"') {
+                                inQuotes = !inQuotes;
+                            }
+                            if (line.charAt(i) == ',' && inQuotes) {
+                                copy += "-";
+                            } else {
+                                copy += line.charAt(i);
+                            }
+                        }
+
+                        line = copy;
                     }
-                   
-                    line = line.replaceAll(DELIMETER, DELIMETER + " ");
+
+                    line = line.replaceAll(DELIMETER, " " + DELIMETER);
+                    line = line.replaceAll("\"", "");
 
                     parts = line.split(DELIMETER);
-                    
+
                     String src, dst, label;
                     MaltegoEntity srcType, dstType;
 
-                    for (int i=0; i<rmodel.getRowCount(); i++) {
+                    for (int i = 0; i < rmodel.getRowCount(); i++) {
                         src = ((String) rmodel.getValueAt(i, 0)).trim();
                         dst = ((String) rmodel.getValueAt(i, 1)).trim();
                         label = (String) rmodel.getValueAt(i, 2);
-             
-                        if (parts[typesc.get(src)].trim().length() > 0 && parts[typesc.get(dst)].trim().length() > 0) {                        
+
+                        if (parts[typesc.get(src)].trim().length() > 0 && parts[typesc.get(dst)].trim().length() > 0) {
                             srcType = types.get(typesc.get(src));
                             dstType = types.get(typesc.get(dst));
 
                             writer.write(String.format("%s,%s,%s,%s,%s\n", srcType.getName(), parts[typesc.get(src)], dstType.getName(), parts[typesc.get(dst)], label));
                         }
-                    }                            
+                    }
                 }
 
                 writer.close();
@@ -779,16 +802,22 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GraphImporterComponentApp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GraphImporterComponentApp.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GraphImporterComponentApp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GraphImporterComponentApp.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GraphImporterComponentApp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GraphImporterComponentApp.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GraphImporterComponentApp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GraphImporterComponentApp.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
