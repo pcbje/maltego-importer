@@ -63,7 +63,7 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
     private Properties prop;
     private String[] header;
     private boolean initial;
-    private static final DateFormat format = new SimpleDateFormat("yyyy.MM.dd-HH:mm:ss");
+    private static final DateFormat format = new SimpleDateFormat("yyyy_MM_dd-HH_mm_ss");
 
     /**
      * Creates new form GraphImporterComponentApp
