@@ -166,6 +166,7 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
 
                 line = line.replaceAll(DELIMETER, DELIMETER + " ");
                 line = line.replaceAll("\"", "");
+                line = line.replaceAll("&", "");
 
                 parts = line.split(DELIMETER);
 
