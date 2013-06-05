@@ -4,6 +4,7 @@ import static com.pcbje.maltegoimporter.app.GraphImporterDummyApp.logger;
 import com.pcbje.maltegoimporter.model.impl.MaltegoEntity;
 import com.pcbje.maltegoimporter.receiver.impl.CSVFileReceiver;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
@@ -30,9 +31,12 @@ import java.util.logging.Logger;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.ListCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -145,6 +149,7 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -253,6 +258,8 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
             }
         });
 
+        jCheckBox1.setText("Debug");
+
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
 
@@ -333,14 +340,16 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                                     .add(layout.createSequentialGroup()
-                                        .add(jRadioButton2)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                        .add(jRadioButton1))
-                                    .add(layout.createSequentialGroup()
                                         .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 245, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                        .add(jButton1)))))
-                        .add(0, 271, Short.MAX_VALUE))
+                                        .add(jButton1)
+                                        .add(0, 0, Short.MAX_VALUE))
+                                    .add(layout.createSequentialGroup()
+                                        .add(jRadioButton2)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                        .add(jRadioButton1)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 245, Short.MAX_VALUE)
+                                        .add(jCheckBox1))))))
                     .add(layout.createSequentialGroup()
                         .addContainerGap()
                         .add(jButton4)
@@ -371,7 +380,8 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel1)
                     .add(jRadioButton2)
-                    .add(jRadioButton1))
+                    .add(jRadioButton1)
+                    .add(jCheckBox1))
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel2)
@@ -563,7 +573,8 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
 
                 reader.close();
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage());
+                Logger.getLogger(GraphImporterComponentApp.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, ex.getMessage());                
             }
         }
 
@@ -739,6 +750,7 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
                 writer.close();
 
             } catch (IOException ex) {
+                Logger.getLogger(GraphImporterComponentApp.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         } else {
@@ -762,6 +774,25 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
 
             Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
             clpbrd.setContents(new StringSelection(new String(baos.toByteArray())), null);
+            
+            if (jCheckBox1.isSelected()) {
+                JFrame dbg = new JFrame();
+                dbg.setTitle("Debug");
+                dbg.setSize(new Dimension(400, 300));
+                dbg.setLocationRelativeTo(null);
+                
+                JScrollPane sp = new JScrollPane();
+                
+                JTextArea ta = new JTextArea();
+                
+                ta.setText(new String(baos.toByteArray()));
+                                
+                sp.getViewport().add(ta);
+                
+                dbg.getContentPane().add(sp);
+                
+                dbg.setVisible(true);
+            }
 
             JOptionPane.showMessageDialog(null, "Transformed! Now click \"Paste\" under the tab \"Investigate\" in Maltego.");
         } catch (Exception e) {
@@ -844,6 +875,7 @@ public class GraphImporterComponentApp extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
