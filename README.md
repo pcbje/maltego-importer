@@ -11,7 +11,10 @@ Jon Doe,Some random guy,Some lady,Policeman
 </pre>
 
 #### Input format: Value based CSV
+Format:
+<pre>Source type, Source value, Target type, Target value, Edge label</pre>
 
+Example:
 <pre>
 GangMember, Jon Doe,   Male,       Some random guy, Shoots
 Female,     Some lady, Male,       Some random guy, Sees
